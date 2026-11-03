@@ -61,10 +61,20 @@
                 ><button type="button" data-view="world" aria-pressed="false"
                   >世界</button
                 ></div
-              ><div class="country-panel" id="taiwan-panel" hidden
-                ><button class="panel-close" aria-label="關閉台灣資訊">×</button
-                ><p class="country-kicker">HACKIT IN</p
-                ><p class="country-name">Taiwan<span>台灣</span></p
+              ><div
+                class="country-panel"
+                id="taiwan-panel"
+                role="region"
+                aria-labelledby="taiwan-panel-title"
+                hidden
+                inert
+                ><button
+                  type="button"
+                  class="panel-close"
+                  aria-label="關閉台灣資訊"
+                  >×</button
+                ><p class="country-name" id="taiwan-panel-title"
+                  >Taiwan<span>台灣</span></p
                 ><a href="https://hackit.tw" target="_blank" rel="noopener"
                   >前往台灣站</a
                 ></div

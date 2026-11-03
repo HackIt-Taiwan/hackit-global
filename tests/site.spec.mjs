@@ -141,6 +141,176 @@ test("keyboard dialogs preserve complete story text, Escape and focus return", a
   await noPolicyViolations(page);
 });
 
+test("Taiwan popover reverses motion without losing the latest intent or focus", async ({
+  page,
+}) => {
+  await ready(page);
+  const trigger = page.locator(".map-activation"),
+    panel = page.locator("#taiwan-panel");
+  await page.locator(".map-activation circle").click();
+  await expect(trigger).toHaveAttribute("aria-expanded", "true");
+  const continuity = await panel.evaluate((element) => {
+    const motion = element.getAnimations()[0];
+    motion.pause();
+    motion.currentTime = 90;
+    const before = Number(getComputedStyle(element).opacity),
+      button = document.querySelector(".map-activation");
+    button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    return { before, after: Number(getComputedStyle(element).opacity) };
+  });
+  expect(continuity.before).toBeGreaterThan(0);
+  expect(continuity.before).toBeLessThan(1);
+  expect(Math.abs(continuity.after - continuity.before)).toBeLessThan(0.1);
+  await expect
+    .poll(() => panel.evaluate((element) => element.getAnimations().length))
+    .toBe(0);
+  await expect(panel).toBeVisible();
+  await expect(trigger).toHaveAttribute("aria-expanded", "true");
+  await panel.locator("button").click();
+  await expect(trigger).toBeFocused();
+  await expect(panel).toHaveJSProperty("inert", true);
+  await expect(panel).toBeHidden();
+  await page.keyboard.press("Space");
+  await expect(panel.locator("a")).toBeFocused();
+  const world = page.locator("[data-view=world]");
+  await world.focus();
+  await page.keyboard.press("Enter");
+  await expect(panel).toBeHidden();
+  await expect(world).toBeFocused();
+  await page.locator("[data-view=asia]").click();
+  await trigger.focus();
+  await page.keyboard.press("Enter");
+  await expect(panel).toBeVisible();
+  await page.mouse.click(4, 4);
+  await expect(panel).toBeHidden();
+  await expect(trigger).toHaveAttribute("aria-expanded", "false");
+  await trigger.focus();
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Escape");
+  await expect(panel).toBeHidden();
+  await expect(trigger).toBeFocused();
+  await noPolicyViolations(page);
+});
+
+test("Taiwan popover is readable in every locale and fits a short viewport", async ({
+  page,
+  browserName,
+}) => {
+  test.setTimeout(90_000);
+  const panel = page.locator("#taiwan-panel"),
+    trigger = page.locator(".map-activation");
+  for (const locale of locales) {
+    await ready(page, "/" + locale + "/");
+    await trigger.focus();
+    await page.keyboard.press("Space");
+    await expect(panel).toBeVisible();
+    await expect(panel).toHaveAttribute("role", "region");
+    await expect(panel.locator("a")).toBeFocused();
+    await expect
+      .poll(() => panel.evaluate((element) => element.getAnimations().length))
+      .toBe(0);
+    expect(
+      (
+        await new AxeBuilder({ page })
+          .setLegacyMode()
+          .include("#taiwan-panel")
+          .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+          .analyze()
+      ).violations,
+    ).toEqual([]);
+    await page.keyboard.press("Escape");
+    await expect(panel).toBeHidden();
+  }
+  await page.setViewportSize({ width: 568, height: 320 });
+  await ready(page);
+  await trigger.focus();
+  await page.keyboard.press("Enter");
+  await expect
+    .poll(() => panel.evaluate((element) => element.getAnimations().length))
+    .toBe(0);
+  const bounds = await panel.boundingBox(),
+    viewport = await page.evaluate(() => ({
+      width: visualViewport.width,
+      height: visualViewport.height,
+    }));
+  expect(bounds.x).toBeGreaterThanOrEqual(15);
+  expect(bounds.y).toBeGreaterThanOrEqual(15);
+  expect(bounds.x + bounds.width).toBeLessThanOrEqual(viewport.width - 15);
+  expect(bounds.y + bounds.height).toBeLessThanOrEqual(viewport.height - 15);
+  const link = panel.locator("a");
+  await link.evaluate((element) => {
+    element.addEventListener("click", (event) => {
+      event.preventDefault();
+      element.dataset.clicked = "true";
+    });
+  });
+  await link.click({ position: { x: 20, y: 23 } });
+  await expect(link).toHaveAttribute("data-clicked", "true");
+  await panel.locator("button").click();
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(panel).toBeHidden();
+  await expect(panel).not.toHaveAttribute(
+    "data-panel-motion",
+    /opening|closing/,
+  );
+  await expect(trigger).toHaveAttribute("aria-expanded", "false");
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await expect(page.locator("html")).toHaveClass(/animated/);
+  await trigger.focus();
+  await page.keyboard.press("Enter");
+  await expect(panel).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(panel).toBeHidden();
+  await page.setViewportSize({ width: 220, height: 640 });
+  await ready(page);
+  await trigger.focus();
+  await page.keyboard.press("Enter");
+  await expect
+    .poll(() => panel.evaluate((element) => element.getAnimations().length))
+    .toBe(0);
+  const narrow = await panel.boundingBox();
+  expect(narrow.x).toBeGreaterThanOrEqual(15);
+  expect(narrow.x + narrow.width).toBeLessThanOrEqual(205);
+  await panel.locator("button").click();
+  await expect(panel).toBeHidden();
+  if (browserName === "chromium") {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await ready(page);
+    const session = await page.context().newCDPSession(page);
+    try {
+      await session.send("Emulation.setPageScaleFactor", {
+        pageScaleFactor: 2,
+      });
+      await expect
+        .poll(() => page.evaluate(() => visualViewport.scale))
+        .toBe(2);
+      await trigger.focus();
+      await page.keyboard.press("Enter");
+      await expect
+        .poll(() => panel.evaluate((element) => element.getAnimations().length))
+        .toBe(0);
+      const zoomed = await panel.boundingBox(),
+        visible = await page.evaluate(() => ({
+          left: visualViewport.offsetLeft,
+          width: visualViewport.width,
+        }));
+      expect(zoomed.x).toBeGreaterThanOrEqual(visible.left + 15);
+      expect(zoomed.x + zoomed.width).toBeLessThanOrEqual(
+        visible.left + visible.width - 15,
+      );
+      await page.keyboard.press("Escape");
+      await expect(panel).toBeHidden();
+    } finally {
+      await session.send("Emulation.setPageScaleFactor", {
+        pageScaleFactor: 1,
+      });
+      await session.detach();
+    }
+  }
+  await noPolicyViolations(page);
+});
+
 test("hero, reading view and join dialog pass automated WCAG checks", async ({
   page,
 }) => {
