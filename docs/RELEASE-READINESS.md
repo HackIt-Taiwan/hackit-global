@@ -1,5 +1,7 @@
 # Release readiness evidence
 
+**Historical local/candidate baseline, superseded for live status on 2026-11-03.** The candidate wording and launch gates below record the earlier review state. See [public release evidence](RELEASE-EVIDENCE.md) for the verified repository, CI, deployed revision, HTTPS/redirects, delivered content, and live browser results.
+
 Local verification baseline: 2026-11-02. Publication authorization updated: 2026-11-03. This document records a release candidate, not a completed production launch. The owner authorized public source publication with the current curated photographs and participant feedback, together with official website deployment. The intended repository is `HackIt-Taiwan/hackit-global`; remote revision/CI and live deployment evidence must be recorded when verified. No blanket reuse license is granted.
 
 ## Resolved findings
