@@ -1,7 +1,7 @@
 # Official Docker Hub multi-platform Node 24 LTS index, verified 2026-11-02:
 # https://registry-1.docker.io/v2/library/node/manifests/24-bookworm-slim
 # Refresh this digest deliberately when applying Node/Debian security updates.
-FROM node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c AS build
+FROM node:26-bookworm-slim@sha256:bc0a2afd3b74ce12222fc8bab99271e66257f021078f5f4a5d687a77d280c1d9 AS build
 WORKDIR /build
 RUN apt-get update \
     && apt-get install -y --no-install-recommends python3 python3-venv ca-certificates \
