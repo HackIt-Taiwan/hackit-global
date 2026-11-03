@@ -114,49 +114,84 @@ button:focus-visible,
 }
 .country-panel {
   position: absolute;
-  left: 64%;
-  top: 42%;
-  background: var(--ink);
-  color: var(--paper);
+  left: 54%;
+  top: 59%;
+  width: min(256px, var(--panel-max-width, calc(100vw - 32px)));
+  max-height: var(--panel-max-height, calc(100svh - 32px));
+  translate: var(--panel-shift-x, 0px) var(--panel-shift-y, 0px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+  color: var(--ink);
   padding: 22px;
-  min-width: 240px;
-  z-index: 9;
+  border: 1px solid #25274816;
+  border-radius: 16px;
+  box-shadow:
+    0 16px 40px #2527480d,
+    0 2px 8px #25274805;
+  z-index: 11;
 }
 .country-panel[hidden] {
   display: none;
 }
 .panel-close {
   position: absolute;
-  right: 6px;
-  top: 5px;
+  right: 8px;
+  top: 8px;
   border: 0;
-  background: none;
-  color: inherit;
-  font-size: 25px;
-  width: 36px;
-  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  color: #707079;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
 }
-.country-kicker {
-  font: 10px monospace;
-  letter-spacing: 0.15em;
-  color: #b8b6c1;
-  margin: 0 0 12px;
+.panel-close:hover {
+  background: #25274809;
+  color: var(--ink);
 }
 .country-name {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 600;
-  margin: 0 0 22px;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin: 0 28px 18px 0;
 }
 .country-name span {
   font-size: 12px;
   font-weight: 400;
-  margin-left: 12px;
+  letter-spacing: 0;
+  margin-left: 10px;
+  color: #62626e;
 }
 .country-panel a {
   display: block;
   font-size: 12px;
-  border-top: 1px solid #ffffff40;
+  line-height: 1.5;
+  color: #383a67;
+  border-top: 1px solid #25274816;
   padding-top: 14px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 160ms ease;
+}
+.country-panel a:hover {
+  text-decoration-color: currentColor;
+}
+.country-panel :is(a, button):focus-visible {
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .country-panel a,
+  .panel-close {
+    transition: none;
+  }
 }
 .photo-objects {
   position: absolute;
@@ -464,7 +499,6 @@ dialog li {
     left: auto;
     right: 7%;
     top: 60%;
-    min-width: 205px;
     padding: 18px;
   }
   .photo-heading {
@@ -698,26 +732,6 @@ dialog li {
 .contact-link:hover {
   text-decoration: underline;
 }
-.country-panel {
-  background: white;
-  color: var(--ink);
-  border: 1px solid #e6e6e8;
-  border-radius: 18px;
-  box-shadow: 0 8px 30px #0000000a;
-}
-.country-kicker {
-  color: #86868b;
-}
-.country-panel a {
-  border-color: #dedee1;
-  color: #383a67;
-}
-.country-name {
-  font-size: 25px;
-}
-.panel-close {
-  color: #86868b;
-}
 dialog {
   border-radius: 26px;
   background: #fff;
@@ -836,7 +850,6 @@ footer {
     line-height: 18px;
   }
   .country-panel {
-    min-width: 200px;
     padding: 20px;
   }
   .country-name {
@@ -945,10 +958,6 @@ footer {
 .map-controls button[aria-pressed="true"] {
   background: #252748;
   color: white;
-}
-.country-panel {
-  left: 54%;
-  top: 59%;
 }
 .wall-scene {
   position: absolute;

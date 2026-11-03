@@ -32,26 +32,126 @@
   let scheduled = false,
     ready = false,
     renderedProgress = null;
-  function setPanel(open) {
-    panel.hidden = !open;
-    mapButton.setAttribute("aria-expanded", String(open));
+  let panelOpen = false,
+    panelAnimation = null,
+    panelRevision = 0;
+  function placePanel() {
+    if (!panelOpen) return;
+    panel.style.setProperty("--panel-shift-x", "0px");
+    panel.style.setProperty("--panel-shift-y", "0px");
+    const viewport = window.visualViewport,
+      scene = stage.getBoundingClientRect(),
+      left = Math.max(scene.left, viewport?.offsetLeft || 0) + 16,
+      top = Math.max(scene.top, viewport?.offsetTop || 0) + 16,
+      right =
+        Math.min(
+          scene.right,
+          (viewport?.offsetLeft || 0) + (viewport?.width || innerWidth),
+        ) - 16,
+      bottom =
+        Math.min(
+          scene.bottom,
+          (viewport?.offsetTop || 0) + (viewport?.height || innerHeight),
+        ) - 16;
+    const scale = panel.getBoundingClientRect().width / panel.offsetWidth || 1;
+    panel.style.setProperty(
+      "--panel-max-width",
+      Math.max(0, right - left) / scale + "px",
+    );
+    panel.style.setProperty(
+      "--panel-max-height",
+      Math.max(0, bottom - top) / scale + "px",
+    );
+    const bounds = panel.getBoundingClientRect(),
+      x = Math.max(left - bounds.left, Math.min(0, right - bounds.right)),
+      y = Math.max(top - bounds.top, Math.min(0, bottom - bounds.bottom));
+    panel.style.setProperty("--panel-shift-x", x / scale + "px");
+    panel.style.setProperty("--panel-shift-y", y / scale + "px");
   }
-  mapButton.addEventListener("click", () => setPanel(panel.hidden));
+  function setPanel(open, { immediate = false, restoreFocus = false } = {}) {
+    if (
+      open &&
+      (mapScene.inert ||
+        reduce.matches ||
+        root.classList.contains("reading-mode"))
+    )
+      return;
+    if (open === panelOpen && !immediate) return;
+    const revision = ++panelRevision,
+      wasHidden = panel.hidden,
+      current = !wasHidden && panelAnimation ? getComputedStyle(panel) : null,
+      from = current
+        ? { opacity: current.opacity, transform: current.transform }
+        : null;
+    panelAnimation?.cancel();
+    panelAnimation = null;
+    panelOpen = open;
+    mapButton.setAttribute("aria-expanded", String(open));
+    panel.inert = !open;
+    if (restoreFocus && !mapScene.inert)
+      mapButton.focus({ preventScroll: true });
+    if (open) {
+      panel.hidden = false;
+      placePanel();
+    }
+    if (
+      immediate ||
+      reduce.matches ||
+      typeof panel.animate !== "function" ||
+      (!open && wasHidden)
+    ) {
+      panel.hidden = !open;
+      delete panel.dataset.panelMotion;
+      return;
+    }
+    panel.dataset.panelMotion = open ? "opening" : "closing";
+    const animation = panel.animate(
+      [
+        from || {
+          opacity: open ? "0" : "1",
+          transform: open ? "translateY(8px)" : "none",
+        },
+        {
+          opacity: open ? "1" : "0",
+          transform: open ? "none" : "translateY(4px)",
+        },
+      ],
+      {
+        duration: open ? 220 : 140,
+        easing: open ? "cubic-bezier(.22,1,.36,1)" : "cubic-bezier(.4,0,1,1)",
+        fill: "both",
+      },
+    );
+    panelAnimation = animation;
+    const finish = () => {
+      if (revision !== panelRevision) return;
+      panel.hidden = !panelOpen;
+      panelAnimation = null;
+      delete panel.dataset.panelMotion;
+      animation.cancel();
+    };
+    animation.finished.then(finish, finish);
+  }
+  window.addEventListener("resize", placePanel);
+  window.visualViewport?.addEventListener("resize", placePanel);
+  window.visualViewport?.addEventListener("scroll", placePanel, {
+    passive: true,
+  });
+  mapButton.addEventListener("click", () => setPanel(!panelOpen));
   mapButton.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      setPanel(panel.hidden);
-      if (!panel.hidden) panel.querySelector("a").focus();
+      setPanel(!panelOpen);
+      if (panelOpen) panel.querySelector("a").focus({ preventScroll: true });
     }
   });
   panel.querySelector("button").addEventListener("click", () => {
-    setPanel(false);
-    mapButton.focus();
+    setPanel(false, { restoreFocus: true });
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !panel.hidden) {
-      setPanel(false);
-      mapButton.focus();
+    if (e.key === "Escape" && panelOpen) {
+      e.preventDefault();
+      setPanel(false, { restoreFocus: true });
     }
   });
   document.addEventListener("click", (e) => {
@@ -556,7 +656,7 @@
         document.activeElement.blur();
       mapScene.inert = mo < 0.1;
       mapScene.setAttribute("aria-hidden", String(mo < 0.1));
-      if (mo < 0.1 && !panel.hidden) setPanel(false);
+      if (mo < 0.1 && !panel.hidden) setPanel(false, { immediate: true });
     });
     const headingOpacity = smooth(0.28, 0.36, p) * (1 - smooth(0.45, 0.53, p));
     changed(
@@ -629,6 +729,7 @@
     }
   }
   function setMotion() {
+    if (reduce.matches) setPanel(false, { immediate: true });
     root.classList.toggle("animated", !reduce.matches && ready);
     window.HackItI18n?.placeLanguageControl();
     if (ready && !reduce.matches)
@@ -696,6 +797,7 @@
   });
   document.querySelector("#skip-story").addEventListener("click", (e) => {
     e.preventDefault();
+    setPanel(false, { immediate: true });
     root.classList.add("reading-mode");
     window.HackItI18n?.placeLanguageControl();
     document.querySelector("#overview").focus();
