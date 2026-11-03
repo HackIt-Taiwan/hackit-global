@@ -1,0 +1,7 @@
+# Third-party notices
+
+The maintained map geometry in `source/world-map.svg` and `source/static/assets/world-map.svg` derives from Natural Earth 1:110m Admin-0 Countries, version 5.1.1. Natural Earth places its map data in the public domain; see the [official terms](https://www.naturalearthdata.com/about/terms-of-use/). The [map provenance record](docs/MAP-PROVENANCE.md) provides the pinned public data revision, byte size, SHA-256, projection parameters, and independent verification of all 176 non-Antarctica feature paths. The original download timestamp remains unknown; source identity and geometry correspondence are verified.
+
+The owner authorized publication of the current curated source and site content on 2026-11-03. That approval and the geographic-data statement do not grant a general reuse license for application code, HackIt branding, photography, mission text, participant statements, or translations. See [content rights](docs/CONTENT-RIGHTS.md) for the publication scope and raw-material exclusions.
+
+The Docker build uses official Node and Google distroless images; retain their included license notices when distributing an image. Build and test dependencies keep their upstream licenses in their respective packages. `requirements.txt`, `package-lock.json`, and the Dockerfile identify the reviewed dependency inputs. No broad application or content license has been selected by this project.

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "sectionKinds": [
+    "lead",
+    "manifesto",
+    "body",
+    "body",
+    "body",
+    "forces",
+    "conclusion",
+    "equation",
+    "final"
+  ],
+  "locales": {
+    "zh-TW": [
+      "HackIt 的使命，是讓年輕 Builder 在親手改變世界的過程中，成為勇於冒險、持續成長、並相信自己力量的未來設計者。",
+      "HackIt 讓年輕 Builder 親手改變世界——在冒險與創造中，學會相信自己能做到。",
+      "我們是由年輕 Builder 為年輕 Builder 打造的行動社群，相信學習不該被關進教室。透過黑客松與遠征，我們讓年輕 Builder 從「我不行」走到「我真的能」，在真實世界裡動手創造、在夥伴之間互相點燃。因為當年輕 Builder 被信任，他們不只是參與者，而是未來的設計者。",
+      "HackIt 的目標，是透過「冒險式創造」（Adventure-based Creation），讓 13‒23 歲的年輕 Builder 在真實世界中動手實踐，從被動的學習者轉變為主動的改變者。我們相信學習應該發生在挑戰、創造與冒險中。我們的行動由年輕 Builder 主導推動，讓他們在最具可塑性的年紀中，看見世界，也改變世界。",
+      "我們不追求形式，而追求文化—— 動手實作、勇於冒險、跨出舒適圈，並讓每一次行動都留下具體的影響。我們的成功，不以活動數量衡量，而以每一個被點燃的靈魂、每一個重新相信自己的年輕 Builder 為指標。因為當他們學會主動創造、彼此啟發，他們不只是成長，他們正在重寫未來。",
+      "改變世界，意味著擁有面對未知、勇於行動的勇氣；\n勇於冒險，代表持續跨出舒適圈、探索新可能的創新力；\n持續成長，則是讓每一次嘗試都能化為推進的執行力。",
+      "而當這三種力量被協作與善用工具放大，年輕 Builder 不只是學習者\n——他們將成為真正能親手設計未來的設計者。",
+      "未來的設計者 =（勇氣 × 創新力 × 執行力）^（協作 × 工具槓桿）",
+      "——用勇氣啟動、以創新尋路、靠執行抵達，並讓社群協作與科技放大改變的力量。"
+    ],
+    "zh-HK": [
+      "HackIt 的使命，是讓年輕 Builder 在親手改變世界的過程中，成為勇於冒險、持續成長、並相信自己力量的未來設計者。",
+      "HackIt 讓年輕 Builder 親手改變世界——在冒險與創造中，學會相信自己能做到。",
+      "我們是由年輕 Builder 為年輕 Builder 打造的行動社群，相信學習不該被關進教室。透過黑客松與遠征，我們讓年輕 Builder 從「我不行」走到「我真的能」，在真實世界裡動手創造、在夥伴之間互相點燃。因為當年輕 Builder 被信任，他們不只是參與者，而是未來的設計者。",
+      "HackIt 的目標，是透過「冒險式創造」（Adventure-based Creation），讓 13‒23 歲的年輕 Builder 在真實世界中動手實踐，從被動的學習者轉變為主動的改變者。我們相信學習應該發生在挑戰、創造與冒險中。我們的行動由年輕 Builder 主導推動，讓他們在最具可塑性的年紀中，看見世界，也改變世界。",
+      "我們不追求形式，而追求文化—— 動手實作、勇於冒險、跨出舒適圈，並讓每一次行動都留下具體的影響。我們的成功，不以活動數量衡量，而以每一個被點燃的靈魂、每一個重新相信自己的年輕 Builder 為指標。因為當他們學會主動創造、彼此啟發，他們不只是成長，他們正在重寫未來。",
+      "改變世界，意味著擁有面對未知、勇於行動的勇氣；\n勇於冒險，代表持續跨出舒適圈、探索新可能的創新力；\n持續成長，則是讓每一次嘗試都能化為推進的執行力。",
+      "而當這三種力量被協作與善用工具放大，年輕 Builder 不只是學習者\n——他們將成為真正能親手設計未來的設計者。",
+      "未來的設計者 =（勇氣 × 創新力 × 執行力）^（協作 × 工具槓桿）",
+      "——用勇氣啟動、以創新尋路、靠執行抵達，並讓社群協作與科技放大改變的力量。"
+    ],
+    "zh-CN": [
+      "HackIt 的使命，是让年轻 Builder 在亲手改变世界的过程中，成为勇于冒险、持续成长、并相信自己力量的未来设计者。",
+      "HackIt 让年轻 Builder 亲手改变世界——在冒险与创造中，学会相信自己能做到。",
+      "我们是由年轻 Builder 为年轻 Builder 打造的行动社区，相信学习不该被关进教室。通过黑客松与远征，我们让年轻 Builder 从“我不行”走到“我真的能”，在真实世界里动手创造、在伙伴之间互相点燃。因为当年轻 Builder 被信任，他们不只是参与者，而是未来的设计者。",
+      "HackIt 的目标，是通过“冒险式创造”（Adventure-based Creation），让 13‒23 岁的年轻 Builder 在真实世界中动手实践，从被动的学习者转变为主动的改变者。我们相信学习应该发生在挑战、创造与冒险中。我们的行动由年轻 Builder 主导推动，让他们在最具可塑性的年纪中，看见世界，也改变世界。",
+      "我们不追求形式，而追求文化——动手实践、勇于冒险、跨出舒适圈，并让每一次行动都留下具体的影响。我们的成功，不以活动数量衡量，而以每一个被点燃的灵魂、每一个重新相信自己的年轻 Builder 为指标。因为当他们学会主动创造、彼此启发，他们不只是成长，他们正在重写未来。",
+      "改变世界，意味着拥有面对未知、勇于行动的勇气；\n勇于冒险，代表持续跨出舒适圈、探索新可能的创新力；\n持续成长，则是让每一次尝试都能化为推进的执行力。",
+      "而当这三种力量被协作与善用工具放大，年轻 Builder 不只是学习者\n——他们将成为真正能亲手设计未来的设计者。",
+      "未来的设计者 =（勇气 × 创新力 × 执行力）^（协作 × 工具杠杆）",
+      "——用勇气启动、以创新寻路、靠执行抵达，并让社区协作与科技放大改变的力量。"
+    ],
+    "en": [
+      "HackIt’s mission is to help young Builders become designers of the future who dare to take risks, keep growing, and believe in their own power, through the hands-on process of changing the world.",
+      "HackIt empowers young Builders to change the world hands-on—and, through adventure and creation, learn to believe they can do it.",
+      "We are an action-oriented community built by young Builders, for young Builders. We believe learning should not be confined to the classroom. Through hackathons and expeditions, we help young Builders move from “I can’t” to “I really can”, creating in the real world and sparking inspiration in one another. When young Builders are trusted, they become more than participants: they become designers of the future.",
+      "HackIt’s goal is to use “Adventure-based Creation” to enable young Builders aged 13–23 to put ideas into practice in the real world, moving from passive learners to active changemakers. We believe learning should happen through challenge, creation, and adventure. Our initiatives are led and driven by young Builders, enabling them to discover the world—and change it—during their most formative years.",
+      "We pursue culture, not form: building hands-on, daring to take risks, stepping outside our comfort zones, and ensuring every action leaves a tangible impact. We measure success not by the number of events, but by every spirit inspired and every young Builder who learns to believe in themselves again. As they learn to create proactively and inspire one another, they are not just growing—they are rewriting the future.",
+      "Changing the world means having the courage to face the unknown and act boldly;\nDaring to take risks means having the capacity to innovate by continually stepping outside our comfort zones and exploring new possibilities;\nContinual growth means having the ability to turn every attempt into forward momentum through execution.",
+      "When these three strengths are amplified through collaboration and the effective use of tools, young Builders become more than learners\n—they become designers who can truly shape the future with their own hands.",
+      "Designers of the future = (Courage × Innovation × Execution)^(Collaboration × Tool leverage)",
+      "—Start with courage, find a path through innovation, reach the destination through execution, and let community collaboration and technology amplify the power to bring about change."
+    ]
+  },
+  "source": {
+    "section": "2.1. HackIt 使命",
+    "pdfPage": 8,
+    "printedPage": 7
+  },
+  "adaptation": {
+    "status": "Current website adaptation: young Builders, ages 13–23; not a verbatim original whitepaper reproduction."
+  }
+}

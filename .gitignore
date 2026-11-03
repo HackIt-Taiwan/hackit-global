@@ -1,0 +1,25 @@
+node_modules/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.venv/
+dist/
+source/static/index.html
+source/static/zh-TW/
+source/static/zh-HK/
+source/static/zh-CN/
+source/static/en/
+source/worker-build-report.json
+worker/
+qa/
+test-results/
+playwright-report/
+blob-report/
+*.zip
+*.tar.gz
+.DS_Store
+
+# Exclude duplicate generated output created by local filesystem tools.
+/dist [0-9]*/

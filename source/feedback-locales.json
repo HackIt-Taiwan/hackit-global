@@ -1,0 +1,563 @@
+{
+  "schemaVersion": 1,
+  "quotes": [
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "我們一起挑戰了各自人生中的第一款遊戲。",
+          "credit": "Daydream Taiwan 參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "我們一起挑戰製作各自人生中的第一款遊戲。",
+          "credit": "Daydream Taiwan 參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "我们一起挑战制作各自人生中的第一款游戏。",
+          "credit": "Daydream Taiwan 参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "Together, we took on making our very first games.",
+          "credit": "Daydream Taiwan Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "我更願意發言、更願意幫忙、更願意詢問。",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "我更願意發言、更願意幫忙，也更願意開口問問題。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "我更愿意发言、更愿意帮忙，也更愿意开口提问。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "I became more willing to speak up, help out, and ask questions.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "漸漸覺得能上台跟別人分享想法是一件很有趣的事情。",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "漸漸覺得上台跟大家分享想法，其實是一件很有趣的事。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "渐渐觉得上台和大家分享想法，其实是一件很有趣的事。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "I gradually found that getting on stage to share my ideas was actually fun.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "看到作品真的能玩就很感動了TT",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "看到作品真的可以玩，就已經很感動了 TT",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "看到作品真的能玩，就已经很感动了 TT",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "Seeing that our game was actually playable was so moving. TT",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "這次雖然做得不算完美，不過這是一個很累但很值得的經驗",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "這次雖然做得不算完美，但這是一段很累、卻很值得的經歷。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "这次虽然做得不算完美，但这是一段很累、却很值得的经历。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "It wasn’t perfect, but it was an exhausting and worthwhile experience.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "我很喜歡大家一起討論，互相幫助的過程。",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "我很喜歡大家一起討論、互相幫忙的過程。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "我很喜欢大家一起讨论、互相帮助的过程。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "I really enjoyed discussing ideas and helping each other along the way.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "在完成作品的空閒時間交到了一群志同道合的好朋友，一起唱歌一起追日出",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "完成作品後，在空閒時間認識了一群志同道合的好朋友，一起唱歌、一起看日出。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "完成作品后，在空闲时间认识了一群志同道合的好朋友，一起唱歌、一起看日出。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "After finishing our project, I made a group of like-minded friends. We sang together and watched the sunrise.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "雖然最終沒有得名，但這不是重點，我們最終得到彼此！",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "雖然最後沒有得獎，但這不是重點，我們最後收穫了彼此！",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "虽然最后没有获奖，但这不是重点，我们最终收获了彼此！",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "We didn’t win a prize, but that wasn’t the point. We found each other!",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "終於也是成功做出了自己的遊戲，雖然不是很完美，但對一開始的我們來說已經是天方夜譚。",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "最後終於做出了自己的遊戲。雖然不算完美，但對一開始的我們來說，這根本難以想像。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "最后终于做出了自己的游戏。虽然不算完美，但对一开始的我们来说，这根本难以想象。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "We finally made our own game. It wasn’t perfect, but at the start we could barely have imagined getting this far.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "雖然我看起來是白忙一場，但經過這兩天的時間完全投入在一項軟體上，我發現我也默默學到很多功能跟流程。",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "雖然看起來像白忙了一場，但這兩天全心投入使用一套軟件後，我發現自己其實學會了不少功能和流程。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "虽然看起来像白忙了一场，但这两天全心投入使用一款软件后，我发现自己其实学会了不少功能和流程。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "It may have looked like wasted effort, but after two days immersed in one piece of software, I realised how many features and workflows I had learned.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "當我在晚上和工作人員許願想吃pocky時，沒想到他們真的買回來了，讓我超級開心又感動的～",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "晚上我跟工作人員說想吃 Pocky，沒想到他們真的買回來了，令我又開心又感動～",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "晚上我跟工作人员说想吃 Pocky，没想到他们真的买回来了，让我又开心又感动～",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "One evening, I told the staff I wished we had Pocky. I never expected them to actually bring some back—it made me so happy and touched!",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "後來有人提出要改變方向，不用像寫小說那樣詳細，環環相扣，只要寫出簡單劇情，能完成就好，果然我們找到節奏，後面問題迎刃而解，也更有默契，耿了解彼此溝通方式。",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "後來有人提議改變方向，不用像寫小說般詳細、環環相扣，只要寫出簡單劇情，能完成就好。結果我們真的找到節奏，之後的問題迎刃而解，也更有默契，更了解彼此的溝通方式。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "后来有人提议改变方向，不用像写小说那样详细、环环相扣，只要写出简单剧情，能完成就好。结果我们真的找到了节奏，后面的问题迎刃而解，也更有默契，更了解彼此的沟通方式。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "Then someone suggested changing direction: the story didn’t need to be as detailed and tightly woven as a novel. A simple story we could finish would do. We found our rhythm, worked through the problems, and grew more in sync as we learned how each other communicated.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "半夜裡，我們三個人就這樣一邊查資料、一邊互相討論怎麼 Debug，最後終於趕在期限內把遊戲做出來。這次經驗讓我們發現，雖然開發 3D 遊戲比想像中困難很多，但透過團隊合作解決技術問題的過程，確實讓我們學到了不少實作上的經驗。",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "半夜裏，我們三個人一邊查資料，一邊討論怎樣除錯，最後終於趕在限期前做出遊戲。這次讓我們發現，開發 3D 遊戲比想像中困難得多，但透過團隊合作解決技術問題，確實學到了不少實作經驗。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "半夜里，我们三个人一边查资料，一边讨论怎么调试，最后终于赶在截止时间前做出了游戏。这次让我们发现，开发 3D 游戏比想象中困难得多，但通过团队合作解决技术问题，确实学到了不少实践经验。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "In the middle of the night, the three of us looked things up and talked through how to debug, finally finishing our game before the deadline. Making a 3D game was much harder than we expected, but solving technical problems together taught us a lot through hands-on experience.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "在這場活動中，我從幾乎零基礎，到和隊友合作完成一個能運行的遊戲，只花了兩天的時間，在製作的過程中，當然也遇到了許多問題，我們也從中學習了解決問題的方法",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "在這場活動中，我從幾乎零基礎，到跟隊友合作完成一個能運作的遊戲，只用了兩天。製作過程中當然也遇到很多問題，我們亦從中學會了解決問題的方法。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "在这场活动中，我从几乎零基础，到和队友合作完成一个能运行的游戏，只用了两天。制作过程中当然也遇到了很多问题，我们也从中学会了解决问题的方法。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "At this event, I went from almost no experience to making a working game with my teammates in just two days. We ran into plenty of problems along the way, and learned how to solve them.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "在籌備期間我意外的很融入大家，他們也從來不會因為我資訊類能力爛的跟泥土一樣就看不起我，取而代之的是超包容的心態和超友善的氛圍，跟我一開始想像的完全不一樣阿家人們！",
+          "credit": "Scrapyard 籌備團隊回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "籌備期間，我意外地很快就融入大家。他們從來沒有因為我的資訊科技能力很差而看不起我，反而非常包容，氣氛也很友善，跟我最初想像的完全不同！",
+          "credit": "Scrapyard 籌備團隊分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "筹备期间，我意外地很快就融入了大家。他们从来没有因为我的信息技术能力很差而看不起我，反而非常包容，氛围也很友善，跟我最初想象的完全不同！",
+          "credit": "Scrapyard 筹备团队分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "During preparations, I was surprised by how well I fit in. No one looked down on me for being terrible with tech. Instead, they were incredibly welcoming and friendly—completely different from what I had imagined!",
+          "credit": "Scrapyard Organizer reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "text": "雖然 AI 沒能直接生出完整的遊戲，但它幫我們產出了最初的 **3D 模型**。這成為了我們「成為巨人」的第一步，也開啟了後續精彩的「酷酷手搓時間」。",
+          "credit": "參與者回饋",
+          "renderingLabel": "原文節錄",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "text": "雖然 AI 未能直接生成完整遊戲，但它幫我們做出了最初的 3D 模型。這成了我們「成為巨人」的第一步，也讓我們開始了之後精彩的親手製作過程。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文節錄・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "text": "虽然 AI 没能直接生成完整游戏，但它帮我们做出了最初的 3D 模型。这成了我们“成为巨人”的第一步，也开启了后面精彩的亲手制作过程。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文节选・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "text": "AI couldn’t generate a complete game for us, but it helped create our first 3D models. That was our first step towards “becoming giants”—and the start of the fun, hands-on building that followed.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated excerpt",
+          "isVerbatim": false
+        }
+      }
+    }
+  ],
+  "stories": [
+    {
+      "locales": {
+        "zh-TW": {
+          "title": "卡住之後，一起找到節奏",
+          "summary": "劇情討論到午夜還沒定案。改變方向，讓團隊找到可以完成的版本。",
+          "text": "活動第一天我們經歷了劇本卡住，因為我們一開始太想把劇本寫得合理且符合邏輯，有推理感，後來到瞭晚上12點劇情都沒討論好，我們很怕做不完，後來有人提出要改變方向，不用像寫小說那樣詳細，環環相扣，只要寫出簡單劇情，能完成就好，果然我們找到節奏，後面問題迎刃而解，也更有默契，耿了解彼此溝通方式。",
+          "credit": "參與者回饋",
+          "renderingLabel": "全文原文",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "title": "卡關之後，一起找到節奏",
+          "summary": "討論到午夜，劇情仍未定案。改變方向，讓團隊找到能完成的版本。",
+          "text": "活動第一天，我們在劇本上卡住了。起初太想把劇本寫得合理、有邏輯，又有推理感，結果到了晚上十二時，劇情還未討論好，大家都很怕做不完。後來有人提議改變方向，不用像寫小說般詳細、環環相扣，只要寫出簡單劇情，能完成就好。結果我們真的找到節奏，之後的問題迎刃而解，也更有默契，更了解彼此的溝通方式。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文全文・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "title": "卡住之后，一起找到节奏",
+          "summary": "讨论到午夜，剧情还没定下来。改变方向，让团队找到能完成的版本。",
+          "text": "活动第一天，我们在剧本上卡住了。起初太想把剧本写得合理、有逻辑，又有推理感，结果到了晚上十二点，剧情还没讨论好，大家都很怕做不完。后来有人提议改变方向，不用像写小说那样详细、环环相扣，只要写出简单剧情，能完成就好。结果我们真的找到了节奏，后面的问题迎刃而解，也更有默契，更了解彼此的沟通方式。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文全文・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "title": "Finding our rhythm, together",
+          "summary": "At midnight, the story still wasn’t settled. Changing direction helped the team find a version they could finish.",
+          "text": "On the first day, we got stuck on the script. We wanted the story to be logical, convincing, and full of mystery. By midnight, we still hadn’t settled on it, and we were afraid we wouldn’t finish. Then someone suggested a different direction: it didn’t need to be as detailed and tightly woven as a novel. A simple story we could finish would do. We found our rhythm, worked through the problems, and grew more in sync as we learned how each other communicated.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated full reflection",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "title": "讓模型動起來的那一刻",
+          "summary": "第一次參加黑客松，挑戰 3D 遊戲。從接連出現的 Bug，到一起查資料、討論解法。",
+          "text": "這是我們三人第一次參加黑客松。雖然平常有在寫程式，但從來沒有開發過遊戲，這次卻直接挑戰難度較高的 3D遊戲。這兩天我們幾乎沒怎麼睡覺，一直待在電腦前寫程式碼。\n​雖然過程很累，但當我們看到自己寫出來的程式，成功讓3D模型在螢幕上動起來的那一刻，那種疲憊感就消失了。開發過程中其實並不順利，每一行程式碼都考驗著我們的能力，Bug也接二連三出現，甚至好幾次差點讓整個遊戲跑不動。\n​半夜裡，我們三個人就這樣一邊查資料、一邊互相討論怎麼 Debug，最後終於趕在期限內把遊戲做出來。這次經驗讓我們發現，雖然開發 3D 遊戲比想像中困難很多，但透過團隊合作解決技術問題的過程，確實讓我們學到了不少實作上的經驗。",
+          "credit": "參與者回饋",
+          "renderingLabel": "全文原文",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "title": "讓模型動起來的那一刻",
+          "summary": "第一次參加黑客松，挑戰 3D 遊戲。從接連出現的錯誤，到一起查資料、討論解法。",
+          "text": "這是我們三個人第一次參加黑客松。雖然平時有寫程式，但從來沒有開發過遊戲，這次卻直接挑戰難度較高的 3D 遊戲。這兩天我們幾乎沒怎樣睡，一直坐在電腦前寫程式碼。\n\n過程雖然很累，但看到自己寫的程式成功讓 3D 模型在螢幕上動起來的一刻，那種疲倦感就消失了。開發過程其實並不順利，每一行程式碼都考驗着我們，錯誤接連出現，甚至有幾次差點令整個遊戲無法運行。\n\n半夜裏，我們三個人一邊查資料，一邊討論怎樣除錯，最後終於趕在限期前做出遊戲。這次讓我們發現，開發 3D 遊戲比想像中困難得多，但透過團隊合作解決技術問題，確實學到了不少實作經驗。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文全文・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "title": "让模型动起来的那一刻",
+          "summary": "第一次参加黑客松，挑战 3D 游戏。从接连出现的 Bug，到一起查资料、讨论解法。",
+          "text": "这是我们三个人第一次参加黑客松。虽然平时有写代码，但从来没有开发过游戏，这次却直接挑战难度较高的 3D 游戏。这两天我们几乎没怎么睡，一直坐在电脑前写代码。\n\n过程虽然很累，但看到自己写的程序成功让 3D 模型在屏幕上动起来的那一刻，那种疲惫感就消失了。开发过程其实并不顺利，每一行代码都考验着我们，Bug 接连出现，甚至有几次差点让整个游戏无法运行。\n\n半夜里，我们三个人一边查资料，一边讨论怎么调试，最后终于赶在截止时间前做出了游戏。这次让我们发现，开发 3D 游戏比想象中困难得多，但通过团队合作解决技术问题，确实学到了不少实践经验。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文全文・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "title": "The moment the model moved",
+          "summary": "Their first hackathon, and a 3D game: recurring bugs led to researching and working through solutions together.",
+          "text": "This was the first hackathon for all three of us. We coded regularly, but had never developed a game. This time, we went straight for the harder challenge of a 3D game. Over those two days, we barely slept and spent our time at our computers writing code.\n\nIt was exhausting, but when we saw our code make a 3D model move on screen, the tiredness disappeared. Development wasn’t smooth: every line tested us, bugs kept appearing, and several times the whole game almost stopped working.\n\nIn the middle of the night, the three of us looked things up and talked through how to debug, finally finishing our game before the deadline. Making a 3D game was much harder than we expected, but solving technical problems together taught us a lot through hands-on experience.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated full reflection",
+          "isVerbatim": false
+        }
+      }
+    },
+    {
+      "locales": {
+        "zh-TW": {
+          "title": "從大夢想，做到能完成的版本",
+          "summary": "第一次用 Ren’Py：縮小故事、分工合作，也看見一款遊戲背後的努力。",
+          "text": "這次第一次自己用 Ren’Py 做遊戲，真的覺得很新鮮，也很有成就感。一開始我想做一個劇情超完整、角色很多、還有不同結局的大型遊戲，夢想真的開很大。但實際開始做之後才發現，寫劇情就要花很多時間，還要一直debug，有時候一個小地方打錯就整個跑不動。第一天晚上才體會到「時間有限」這件事，只好修改成簡單版的，也知道原來做遊戲沒有想像中那麼簡單。\n在過程中，我也深深體驗到團隊合作的重要性。一人負責寫劇情、一人負責美術、一人負責程式，會比一個人硬撐還有效率。而且大家可以互相討論、給意見，遇到問題也比較不會那麼挫折。這次雖然做得不算完美，不過這是一個很累但很值得的經驗，讓我更了解做遊戲背後的努力。",
+          "credit": "參與者回饋",
+          "renderingLabel": "全文原文",
+          "isVerbatim": true
+        },
+        "zh-HK": {
+          "title": "從大夢想，做到能完成的版本",
+          "summary": "第一次用 Ren’Py：縮小故事規模、分工合作，也看見一款遊戲背後的努力。",
+          "text": "這次第一次自己用 Ren’Py 做遊戲，真的覺得很新鮮，也很有成功感。一開始，我想做一個劇情很完整、角色很多，還有不同結局的大型遊戲，夢想真的很大。但真正開始後才發現，寫劇情要花很多時間，還要不斷除錯，有時一個小地方打錯，整個遊戲就跑不動。第一晚才真正體會到時間有限，只好改成簡單版，也明白了做遊戲沒有想像中容易。\n\n過程中，我也深深體會到團隊合作的重要。一人寫劇情、一人做美術、一人寫程式，比一個人硬撐更有效率。大家可以互相討論、給意見，遇到問題也不會那麼挫敗。這次雖然做得不算完美，但這是一段很累、卻很值得的經歷，讓我更了解做遊戲背後的努力。",
+          "credit": "參加者分享",
+          "renderingLabel": "原文全文・香港用語調整",
+          "isVerbatim": false
+        },
+        "zh-CN": {
+          "title": "从大梦想，做到能完成的版本",
+          "summary": "第一次用 Ren’Py：缩小故事规模、分工合作，也看见一款游戏背后的努力。",
+          "text": "这次第一次自己用 Ren’Py 做游戏，真的觉得很新鲜，也很有成就感。一开始，我想做一个剧情很完整、角色很多，还有不同结局的大型游戏，梦想真的很大。但真正开始后才发现，写剧情要花很多时间，还要不断调试，有时一个小地方打错，整个游戏就跑不起来。第一天晚上才真正体会到时间有限，只好改成简单版，也明白了做游戏没有想象中容易。\n\n过程中，我也深深体会到团队合作的重要性。一人写剧情、一人做美术、一人写代码，比一个人硬撑更有效率。大家可以互相讨论、给意见，遇到问题也不会那么挫败。这次虽然做得不算完美，但这是一段很累、却很值得的经历，让我更了解做游戏背后的努力。",
+          "credit": "参与者分享",
+          "renderingLabel": "原文全文・简体中文本地化",
+          "isVerbatim": false
+        },
+        "en": {
+          "title": "From a big idea to a finishable game",
+          "summary": "A first attempt with Ren’Py meant scaling back the story, sharing the work, and seeing the effort behind a game.",
+          "text": "This was my first time making a game myself with Ren’Py. It felt new and genuinely rewarding. At first, I wanted a big game with a complete story, lots of characters, and different endings. I was dreaming big. Once I started, though, I realised how long writing the story took. There was constant debugging, and sometimes one small typo stopped everything from running. On the first evening, I really felt how limited our time was. I had to make a simpler version, and learned that making games wasn’t as easy as I had imagined.\n\nI also came to appreciate teamwork. Having one person write the story, another make the art, and another code was more efficient than struggling alone. We could discuss things and give each other feedback, which made problems less discouraging. It wasn’t perfect, but it was an exhausting and worthwhile experience that helped me understand the effort behind making a game.",
+          "credit": "Participant reflection",
+          "renderingLabel": "Translated full reflection",
+          "isVerbatim": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+html,
+body {
+  margin: 0;
+  background: #fafafa;
+  color: #252748;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.story {
+  display: none;
+}
+.reading-view {
+  display: block;
+}
+.entry-cover {
+  display: none;
+}
+.booting main {
+  visibility: hidden;
+}
+.booting .entry-cover,
+.entry-leaving .entry-cover {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  inset: 0;
+  background: #fafafa;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 1;
+}
+.entry-cover img {
+  width: 112px;
+  height: auto;
+}
+.entry-leaving .entry-cover {
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+.booting .reading-view {
+  display: none;
+}
+.entry-failed .reading-view {
+  visibility: visible;
+  display: block;
+  max-width: 1000px;
+  margin: auto;
+  padding: 32px 7%;
+}
+.entry-failed .story {
+  display: none;
+}
+.entry-failed .wall-grid > * {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  margin-bottom: 24px;
+}
+.entry-failed .wall-grid {
+  height: auto !important;
+}
+.entry-failed img {
+  max-width: 100%;
+  height: auto;
+}
+.entry-failed .reading-logo {
+  width: 120px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .entry-leaving .entry-cover {
+    transition: none;
+  }
+}

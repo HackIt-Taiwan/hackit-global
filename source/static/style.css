@@ -1,0 +1,2016 @@
+:root {
+  --paper: #f7f5ee;
+  --ink: #252748;
+  --accent: #f26338;
+  --line: #d8d5ca;
+  font-family: "Space Grotesk", "Noto Sans TC", sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+::selection {
+  background: var(--accent);
+  color: white;
+}
+.skip-link {
+  position: fixed;
+  left: 20px;
+  top: -100px;
+  z-index: 30;
+  background: var(--ink);
+  color: white;
+  padding: 12px;
+}
+.skip-link:focus {
+  top: 12px;
+}
+.story {
+  display: none;
+}
+.animated .story {
+  display: block;
+  height: 500svh;
+}
+.stage {
+  height: 100svh;
+  min-height: 500px;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.brand {
+  position: absolute;
+  left: 4.5%;
+  top: 4%;
+  width: clamp(145px, 16vw, 230px);
+  z-index: 8;
+  margin: 0;
+  line-height: 0;
+}
+.brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.map-scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+.map-stage {
+  position: relative;
+  width: 78%;
+  max-width: 1240px;
+  margin-top: 6vh;
+}
+.map-stage svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.continents {
+  fill: url(#map-dots);
+  stroke: #f7f5ee;
+  stroke-width: 0.5;
+}
+.taiwan-shape {
+  fill: var(--accent);
+  stroke: var(--accent);
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1.4px;
+}
+.map-activation {
+  cursor: pointer;
+  outline: none;
+}
+.map-activation:focus-visible .taiwan-focus {
+  fill: var(--accent);
+  stroke: var(--accent);
+  stroke-width: 7px;
+}
+.country-panel {
+  position: absolute;
+  left: 64%;
+  top: 42%;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 22px;
+  min-width: 240px;
+  z-index: 9;
+}
+.country-panel[hidden] {
+  display: none;
+}
+.panel-close {
+  position: absolute;
+  right: 6px;
+  top: 5px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 25px;
+  width: 36px;
+  height: 36px;
+}
+.country-kicker {
+  font: 10px monospace;
+  letter-spacing: 0.15em;
+  color: #b8b6c1;
+  margin: 0 0 12px;
+}
+.country-name {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 22px;
+}
+.country-name span {
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 12px;
+}
+.country-panel a {
+  display: block;
+  font-size: 12px;
+  border-top: 1px solid #ffffff40;
+  padding-top: 14px;
+}
+.photo-objects {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.morph-tile {
+  position: absolute;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  will-change: transform;
+}
+.morph-tile img,
+.morph-tile canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.morph-tile img {
+  opacity: 0;
+}
+.morph-tile canvas {
+  image-rendering: auto;
+}
+.morph-tile figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 7px 10px;
+  background: var(--paper);
+  font-size: 9px;
+  letter-spacing: 0.025em;
+  opacity: 0;
+}
+.photo-heading {
+  position: absolute;
+  right: 8%;
+  top: 17%;
+  font-size: clamp(22px, 2.7vw, 43px);
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: -0.03em;
+  z-index: 4;
+  opacity: 0;
+  margin: 0;
+  pointer-events: none;
+}
+.mission-scene {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 25%;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+}
+.small-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+.mission-scene h2 {
+  font-size: clamp(54px, 7.5vw, 118px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.065em;
+  margin: 24px 0 30px;
+}
+.mission-scene h2 span {
+  color: var(--accent);
+}
+.mission-copy {
+  position: absolute;
+  left: 61%;
+  top: 47%;
+  max-width: 340px;
+}
+.mission-copy p:first-child {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.8;
+  margin: 0 0 15px;
+}
+.mission-copy p:last-child {
+  font-size: 13px;
+  color: #76747a;
+  line-height: 2;
+  margin: 0;
+}
+.join-scene {
+  position: absolute;
+  inset: 24% 12% 10%;
+  z-index: 6;
+  opacity: 0;
+  pointer-events: none;
+}
+.join-scene h2 {
+  font-size: clamp(72px, 11vw, 180px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+  margin: 24px 0 35px;
+}
+.join-open {
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  background: none;
+  padding: 10px 0 14px;
+  font-size: 22px;
+  min-width: 250px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  gap: 45px;
+  align-items: center;
+}
+.join-open span {
+  color: var(--accent);
+  font-size: 32px;
+}
+.contact-link {
+  display: block;
+  font-size: 12px;
+  color: #75727c;
+  margin-top: 20px;
+}
+.join-scene .join-open {
+  position: absolute;
+  left: 64%;
+  top: 52%;
+}
+.join-scene .contact-link {
+  position: absolute;
+  left: 64%;
+  top: calc(52% + 72px);
+}
+.reading-view {
+  padding: 40px 7vw 80px;
+  max-width: 1300px;
+  margin: auto;
+}
+.reading-logo {
+  width: 190px;
+  height: auto;
+}
+.reading-brand {
+  margin: 0;
+  font: inherit;
+}
+.reading-view h2 {
+  font-size: clamp(30px, 5vw, 65px);
+  line-height: 1.5;
+  margin: 55px 0 25px;
+}
+.reading-view > p {
+  max-width: 600px;
+  line-height: 2;
+  font-size: 16px;
+  color: #76747a;
+}
+.reading-photos {
+  display: flex;
+  gap: 15px;
+  margin: 50px 0;
+  overflow: auto;
+}
+.reading-photos figure {
+  margin: 0;
+  min-width: 260px;
+  flex: 1;
+}
+.reading-photos img {
+  display: block;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.reading-photos figcaption {
+  font-size: 10px;
+  margin-top: 10px;
+}
+.animated .reading-view {
+  display: none;
+}
+.reading-mode .story {
+  display: none;
+}
+.reading-mode .reading-view {
+  display: block;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 4.5%;
+  font-size: 10px;
+  color: #8a8790;
+  border-top: 1px solid var(--line);
+}
+footer button {
+  font-size: 10px;
+  border: 0;
+  background: none;
+  color: inherit;
+  padding: 8px;
+}
+dialog {
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+  width: calc(100% - 40px);
+  max-width: 550px;
+  padding: 42px;
+}
+dialog::backdrop {
+  background: #202139a8;
+  backdrop-filter: blur(6px);
+}
+dialog h2 {
+  font-size: 34px;
+  letter-spacing: -0.03em;
+  margin: 25px 0 15px;
+}
+dialog p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #6e6e73;
+}
+.dialog-close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  border: 0;
+  background: none;
+  font-size: 27px;
+  width: 40px;
+  height: 40px;
+}
+.region-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-block: 1px solid var(--line);
+  padding: 22px 0;
+  margin-top: 32px;
+  font-size: 25px;
+}
+.region-link small {
+  font-size: 13px;
+  margin-left: 14px;
+}
+.region-link > span:last-child {
+  color: var(--accent);
+  font-size: 30px;
+}
+.dialog-contact {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+}
+.dialog-contact > span {
+  font-size: 10px;
+  color: #6e6e73;
+}
+dialog li {
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+#credits-dialog > a {
+  text-decoration: underline;
+  font-size: 12px;
+}
+@media (max-width: 700px) {
+  .animated .story {
+    height: 460svh;
+  }
+  .stage {
+    min-height: 560px;
+  }
+  .brand {
+    width: 140px;
+    left: 6%;
+    top: 4%;
+  }
+  .map-stage {
+    width: 89%;
+    margin-top: 0;
+  }
+  .continents {
+    fill: #626478;
+    stroke: var(--paper);
+    stroke-width: 0.8;
+  }
+  .map-activation circle {
+    r: 95px;
+  }
+  .country-panel {
+    left: auto;
+    right: 7%;
+    top: 60%;
+    min-width: 205px;
+    padding: 18px;
+  }
+  .photo-heading {
+    font-size: 22px;
+    right: 7%;
+    top: 17%;
+  }
+  .mission-scene {
+    left: 8%;
+    right: 8%;
+    top: 23%;
+  }
+  .mission-scene h2 {
+    font-size: 56px;
+    margin-top: 24px;
+  }
+  .mission-copy {
+    position: static;
+    max-width: 310px;
+    margin-top: 25px;
+  }
+  .mission-copy p:first-child {
+    font-size: 16px;
+  }
+  .mission-copy p:last-child {
+    font-size: 12px;
+  }
+  .join-scene {
+    inset: 25% 8% 8%;
+  }
+  .join-scene h2 {
+    font-size: 90px;
+    margin-top: 25px;
+  }
+  .join-scene .join-open {
+    position: static;
+    margin-top: 35px;
+    width: 100%;
+    font-size: 21px;
+  }
+  .join-scene .contact-link {
+    position: static;
+    margin-top: 18px;
+  }
+  .morph-tile figcaption {
+    font-size: 8px;
+    padding: 5px;
+  }
+  .reading-view {
+    padding: 30px 7vw 60px;
+  }
+  dialog {
+    padding: 30px;
+  }
+  dialog h2 {
+    font-size: 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animated .story {
+    display: none;
+  }
+  .animated .reading-view {
+    display: block;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+.photo-heading {
+  left: 77%;
+  right: 4%;
+  top: 18%;
+  font-size: clamp(18px, 2vw, 30px);
+}
+@media (max-width: 700px) {
+  .photo-heading {
+    left: 40%;
+    right: 7%;
+    top: 17%;
+    font-size: 22px;
+  }
+}
+.reading-map {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  margin: 45px auto 0;
+}
+.reading-region {
+  font-size: 13px !important;
+  text-align: center;
+  max-width: none !important;
+}
+.reading-region a {
+  color: #6e6e73;
+}
+.no-js-links {
+  padding: 30px 7vw;
+}
+/* V4: quiet surfaces, optical hierarchy, editorial gallery. */
+:root {
+  --paper: #fafafa;
+  --ink: #1d1d1f;
+  --accent: #e76b3d;
+  --line: #dedee1;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.stage {
+  background: #fafafa;
+}
+.brand {
+  width: 140px;
+  left: 5%;
+  top: 4.5%;
+}
+.map-stage {
+  width: min(78vw, 104vh);
+  max-width: 1150px;
+  margin-top: 1vh;
+}
+.continents {
+  fill: #b4bac0;
+  stroke: #fafafa;
+  stroke-width: 1;
+}
+.taiwan-shape {
+  fill: var(--accent);
+  stroke: var(--accent);
+}
+.morph-tile {
+  overflow: visible;
+}
+.morph-tile img,
+.morph-tile canvas {
+  height: calc(100% - var(--caption-space, 0px));
+  border-radius: var(--image-radius, 0px);
+}
+.morph-tile figcaption {
+  background: none;
+  bottom: 0;
+  left: 1px;
+  padding: 6px 0 0;
+  color: #6e6e73;
+  font-size: 10px;
+  line-height: 20px;
+}
+.photo-heading {
+  display: none;
+}
+.mission-scene {
+  top: 26%;
+  left: 15%;
+  right: 15%;
+  text-align: center;
+  visibility: hidden;
+}
+.small-label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  color: #86868b;
+}
+.mission-scene h2 {
+  font-size: clamp(48px, 5.8vw, 88px);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.045em;
+  margin: 24px 0 32px;
+}
+.mission-scene h2 span {
+  color: #86868b;
+}
+.mission-copy {
+  position: static;
+  max-width: 570px;
+  margin: 0 auto;
+}
+.mission-copy p:first-child {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  letter-spacing: -0.015em;
+}
+.mission-copy p:last-child {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #6e6e73;
+}
+.join-scene {
+  inset: 25% 12% 9%;
+  text-align: center;
+  visibility: hidden;
+}
+.join-scene h2 {
+  font-size: clamp(50px, 6.4vw, 96px);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.045em;
+  margin: 22px 0 36px;
+}
+.join-scene .join-open,
+.reading-view .join-open {
+  position: static;
+  min-width: 0;
+  width: 174px;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 30px;
+  padding: 14px 22px;
+  background: #252748;
+  color: white;
+  font-size: 17px;
+  gap: 20px;
+  line-height: 24px;
+}
+.join-open span {
+  color: white;
+  font-size: 23px;
+}
+.join-scene .contact-link {
+  position: static;
+  margin: 22px auto 0;
+  font-size: 13px;
+  color: #6e6e73;
+}
+.contact-link:hover {
+  text-decoration: underline;
+}
+.country-panel {
+  background: white;
+  color: var(--ink);
+  border: 1px solid #e6e6e8;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px #0000000a;
+}
+.country-kicker {
+  color: #86868b;
+}
+.country-panel a {
+  border-color: #dedee1;
+  color: #383a67;
+}
+.country-name {
+  font-size: 25px;
+}
+.panel-close {
+  color: #86868b;
+}
+dialog {
+  border-radius: 26px;
+  background: #fff;
+  padding: 46px;
+  box-shadow: 0 16px 80px #00000015;
+}
+dialog::backdrop {
+  background: #0005;
+  backdrop-filter: blur(4px);
+}
+dialog h2 {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+.dialog-close {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  right: 18px;
+  top: 18px;
+  background: #f5f5f7;
+  font-size: 23px;
+  color: #6e6e73;
+}
+.region-link {
+  border: 0;
+  border-radius: 16px;
+  background: #f5f5f7;
+  padding: 22px;
+  margin-top: 28px;
+  font-size: 23px;
+}
+.region-link small {
+  color: #6e6e73;
+}
+.dialog-contact {
+  padding: 0 4px;
+  margin-top: 28px;
+  gap: 9px;
+}
+.dialog-contact a {
+  font-size: 14px;
+}
+.reading-view h2 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.reading-photos img {
+  border-radius: 20px;
+}
+.reading-view .contact-link {
+  text-align: center;
+}
+footer {
+  background: #f5f5f7;
+  border: 0;
+  color: #86868b;
+  font-size: 10px;
+}
+@media (max-width: 700px) {
+  .brand {
+    width: 118px;
+    left: 6%;
+    top: 4%;
+  }
+  .map-stage {
+    width: 87%;
+    margin-top: 0;
+  }
+  .continents {
+    fill: #afb6bd;
+    stroke: #fafafa;
+    stroke-width: 1;
+  }
+  .mission-scene {
+    top: 27%;
+    left: 8%;
+    right: 8%;
+  }
+  .mission-scene h2 {
+    font-size: 48px;
+    line-height: 1.18;
+    letter-spacing: -0.04em;
+    margin: 23px 0 28px;
+  }
+  .mission-copy p:first-child {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .mission-copy p:last-child {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .mission-copy p:last-child br {
+    display: none;
+  }
+  .join-scene {
+    inset: 28% 7% 8%;
+  }
+  .join-scene h2 {
+    font-size: 44px;
+    line-height: 1.2;
+    margin: 22px 0 35px;
+  }
+  .join-scene .join-open {
+    width: 165px;
+    font-size: 16px;
+  }
+  .join-scene .contact-link {
+    font-size: 12px;
+  }
+  .morph-tile figcaption {
+    font-size: 9px;
+    line-height: 18px;
+  }
+  .country-panel {
+    min-width: 200px;
+    padding: 20px;
+  }
+  .country-name {
+    font-size: 23px;
+  }
+  dialog {
+    padding: 34px 26px;
+    border-radius: 24px;
+  }
+  dialog h2 {
+    font-size: 27px;
+  }
+  .region-link {
+    padding: 20px;
+    font-size: 21px;
+  }
+}
+.morph-tile:nth-child(2) img {
+  object-position: center 30%;
+}
+.continents {
+  fill: #9aa2aa;
+}
+@media (max-width: 700px) {
+  .continents {
+    fill: #9aa2aa;
+  }
+}
+.mission-copy p {
+  text-wrap: balance;
+}
+@media (max-width: 700px) {
+  .mission-copy p:last-child br {
+    display: initial;
+  }
+}
+.small-label,
+footer {
+  color: #6e6e73;
+}
+.join-open {
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
+}
+.join-open:hover {
+  background: #383b61;
+}
+.join-open:active {
+  transform: scale(0.99);
+}
+.region-link:hover {
+  background: #ededf0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .join-open {
+    transition: none;
+  }
+  .join-open:active {
+    transform: none;
+  }
+}
+/* V5: geography as the subject; a rich, source-backed photo wall. */
+.animated .story {
+  height: 900svh;
+}
+.map-stage {
+  width: 94%;
+  max-width: none;
+  height: 78svh;
+  margin: 4vh 0 0;
+}
+.map-stage svg {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.continents path {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 0.65px;
+}
+.map-activation circle {
+  r: 13px;
+}
+.map-controls {
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #e3e3e7;
+  border-radius: 30px;
+  z-index: 10;
+}
+.map-controls button {
+  border: 0;
+  background: none;
+  padding: 9px 19px;
+  font-size: 12px;
+  color: #6e6e73;
+  border-radius: 23px;
+}
+.map-controls button[aria-pressed="true"] {
+  background: #252748;
+  color: white;
+}
+.country-panel {
+  left: 54%;
+  top: 59%;
+}
+.wall-scene {
+  position: absolute;
+  top: 14%;
+  left: 4%;
+  width: 92%;
+  z-index: 4;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.wall-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin: 0 0 25px;
+}
+.wall-header h2 {
+  font-size: clamp(25px, 2.8vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.3;
+  margin: 0;
+}
+.wall-header p {
+  font-size: 10px;
+  line-height: 1.7;
+  color: #6e6e73;
+  max-width: 340px;
+  margin: 0;
+}
+.wall-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px 18px;
+  align-items: stretch;
+}
+.wall-photo,
+.wall-quote {
+  margin: 0;
+  min-width: 0;
+}
+.wall-photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+.wall-photo figcaption {
+  font-size: 10px;
+  line-height: 20px;
+  margin: 6px 1px 0;
+  color: #6e6e73;
+}
+.wall-quote {
+  background: #f0f0f3;
+  border-radius: 16px;
+  padding: 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.wall-quote blockquote {
+  font-size: clamp(16px, 1.6vw, 23px);
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -0.025em;
+  margin: 0;
+  text-wrap: pretty;
+}
+.wall-quote figcaption {
+  font-size: 9px;
+  line-height: 1.5;
+  margin-top: 18px;
+  color: #6b6b73;
+}
+.reading-view .wall-grid {
+  margin: 50px 0;
+}
+.reading-view .wall-header {
+  margin-top: 40px;
+}
+.morph-tile {
+  z-index: 5;
+}
+.photo-objects {
+  z-index: 5;
+}
+@media (max-width: 700px) {
+  .animated .story {
+    height: 1000svh;
+  }
+  .map-stage {
+    width: 100%;
+    height: 72svh;
+    margin-top: 3vh;
+  }
+  .map-controls {
+    bottom: 0;
+  }
+  .map-controls button {
+    padding: 9px 18px;
+  }
+  .country-panel {
+    left: auto;
+    right: 8%;
+    top: 58%;
+  }
+  .wall-scene {
+    top: 15%;
+    left: 5%;
+    width: 90%;
+  }
+  .wall-header {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .wall-header h2 {
+    font-size: 25px;
+    line-height: 1.35;
+    max-width: 280px;
+  }
+  .wall-header p {
+    font-size: 10px;
+    line-height: 1.6;
+    margin-top: 10px;
+    max-width: 290px;
+  }
+  .wall-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 12px;
+  }
+  .wall-photo img {
+    border-radius: 12px;
+  }
+  .wall-photo figcaption {
+    font-size: 8px;
+    line-height: 20px;
+    margin-top: 6px;
+  }
+  .wall-quote {
+    border-radius: 12px;
+    padding: 15px;
+  }
+  .wall-quote blockquote {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .wall-quote figcaption {
+    font-size: 8px;
+    line-height: 1.6;
+    margin-top: 13px;
+  }
+  .taiwan-label text {
+    font-size: 7px;
+  }
+}
+.wall-scene {
+  top: 18%;
+}
+@media (max-width: 700px) {
+  .wall-scene {
+    top: 17%;
+  }
+}
+.wall-header h2 span {
+  display: inline-block;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .wall-quote blockquote {
+    font-size: 16px;
+  }
+  .wall-quote figcaption {
+    font-size: 10px;
+  }
+  .wall-photo figcaption {
+    font-size: 9px;
+  }
+}
+.wall-photo img[src$="wall-14.webp"] {
+  object-position: center 25%;
+}
+.wall-photo img[src$="wall-15.webp"] {
+  object-position: center bottom;
+}
+
+/* V6: a single photo owner, quiet brand clearspace and language control. */
+.brand {
+  left: 4%;
+  top: 24px;
+  width: 118px;
+  will-change: transform;
+}
+.morph-tile img,
+.morph-tile figcaption {
+  visibility: hidden !important;
+}
+.morph-tile canvas {
+  height: 100%;
+}
+.locale-control {
+  position: fixed;
+  right: 24px;
+  top: 24px;
+  z-index: 20;
+  background: #fafafaef;
+  border: 1px solid #e5e5e7;
+  border-radius: 24px;
+  padding: 9px 12px;
+  font:
+    12px -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #555;
+  max-width: 190px;
+}
+.locale-control:focus-visible {
+  outline: 2px solid #e76b3d;
+  outline-offset: 3px;
+}
+.wall-scene {
+  top: 18%;
+}
+.animated .story {
+  height: 1150svh;
+}
+:lang(en) .wall-header h2 span {
+  white-space: normal;
+}
+:lang(en) .mission-scene h2,
+:lang(en) .join-scene h2 {
+  font-size: clamp(43px, 5.4vw, 82px);
+}
+:lang(en) .join-open {
+  width: auto;
+  min-width: 174px;
+  max-width: 230px;
+  white-space: nowrap;
+}
+:lang(en) .wall-quote blockquote {
+  font-size: clamp(16px, 1.35vw, 20px);
+}
+@media (max-width: 700px) {
+  .brand {
+    left: 5%;
+    top: 22px;
+    width: 100px;
+  }
+  .locale-control {
+    top: 24px;
+    right: 5%;
+    font-size: 11px;
+    max-width: 170px;
+    padding: 8px 10px;
+  }
+  .animated .story {
+    height: 1450svh;
+  }
+  .wall-scene {
+    top: 17%;
+  }
+  :lang(en) .wall-header h2 {
+    font-size: 25px;
+  }
+  :lang(en) .mission-scene h2,
+  :lang(en) .join-scene h2 {
+    font-size: 39px;
+  }
+  :lang(en) .wall-quote blockquote {
+    font-size: 15px;
+  }
+  :lang(en) .mission-copy p {
+    font-size: 15px;
+  }
+  .wall-quote {
+    overflow-wrap: anywhere;
+  }
+}
+.locale-control .locale-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.locale-control select {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: transparent;
+  max-width: 100%;
+  cursor: pointer;
+  padding: 0 3px;
+}
+.locale-control select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.corner-arrow {
+  display: inline-block !important;
+  position: relative;
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  font-size: 0 !important;
+  color: inherit !important;
+}
+.corner-arrow:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  right: 0;
+  top: 0;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+}
+.corner-arrow:after {
+  content: "";
+  position: absolute;
+  width: 17px;
+  height: 1.5px;
+  background: currentColor;
+  right: -1px;
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+/* V7: deeper stories retain the existing quiet photo-grid composition. */
+.wall-quote.has-story {
+  grid-column: span 2;
+  padding: 28px 32px;
+}
+.wall-quote.has-story h3 {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #6b6b73;
+  margin: 0 0 16px;
+}
+.wall-quote.has-story blockquote {
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.6;
+  max-width: 760px;
+}
+.story-read-more {
+  align-self: flex-start;
+  border: 0;
+  border-bottom: 1px solid #bebec5;
+  border-radius: 0;
+  padding: 4px 0;
+  background: none;
+  font-size: 13px;
+  margin-top: 18px;
+  color: #383b61;
+  line-height: 1.6;
+}
+.story-read-more:hover {
+  border-color: currentColor;
+}
+.story-read-more:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+#story-dialog {
+  max-width: 690px;
+  max-height: 85svh;
+  overflow: auto;
+}
+#story-dialog-title {
+  padding-right: 20px;
+}
+#story-dialog-body {
+  white-space: pre-line;
+  font-size: 17px;
+  line-height: 1.9;
+  color: #414145;
+  overflow-wrap: anywhere;
+}
+#story-dialog-credit {
+  font-size: 11px;
+  margin-top: 28px;
+  color: #6e6e73;
+}
+.mission-scene {
+  top: 19%;
+  max-height: 74svh;
+  overflow: auto;
+  pointer-events: auto;
+  padding: 0 8px 18px;
+}
+.mission-scene h2 {
+  font-size: clamp(45px, 5vw, 74px);
+  margin: 18px 0 25px;
+}
+.intro-disclosures {
+  max-width: 570px;
+  margin: 28px auto 0;
+  text-align: left;
+}
+.intro-details {
+  border-top: 1px solid #dedee3;
+  padding: 0;
+}
+.intro-details:last-child {
+  border-bottom: 1px solid #dedee3;
+}
+.intro-details summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 15px 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.intro-details summary::-webkit-details-marker {
+  display: none;
+}
+.intro-details summary:after {
+  content: "+";
+  font-size: 20px;
+  font-weight: 400;
+  color: #86868b;
+}
+.intro-details[open] summary:after {
+  content: "−";
+}
+.intro-details summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.intro-details p {
+  font-size: 14px;
+  line-height: 1.85;
+  color: #6e6e73;
+  margin: 0 0 20px;
+  text-wrap: pretty;
+}
+.animated .story {
+  height: 1600svh;
+}
+@media (max-width: 700px) {
+  .animated .story {
+    height: 2300svh;
+  }
+  .wall-quote.has-story {
+    padding: 24px;
+  }
+  .wall-quote.has-story blockquote {
+    font-size: 20px;
+  }
+  .wall-quote.has-story h3 {
+    font-size: 12px;
+  }
+  .story-read-more {
+    font-size: 13px;
+  }
+  #story-dialog {
+    padding: 40px 25px 30px;
+    max-height: 86svh;
+  }
+  #story-dialog-body {
+    font-size: 16px;
+    line-height: 1.9;
+  }
+  #story-dialog-title {
+    font-size: 24px;
+  }
+  .mission-scene {
+    top: 17%;
+    max-height: 77svh;
+    left: 7%;
+    right: 7%;
+  }
+  .mission-scene h2 {
+    font-size: 40px;
+  }
+  .intro-disclosures {
+    margin-top: 22px;
+  }
+  .intro-details summary {
+    font-size: 14px;
+    padding: 13px 0;
+  }
+  .intro-details p {
+    font-size: 14px;
+  }
+  .mission-copy p:first-child {
+    font-size: 16px;
+  }
+  .mission-copy p:last-child {
+    font-size: 13px;
+  }
+  :lang(en) .mission-scene h2 {
+    font-size: 35px;
+  }
+  :lang(en) .wall-quote.has-story blockquote {
+    font-size: 19px;
+  }
+}
+.wall-quote.has-story .story-preview {
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.6;
+  letter-spacing: -0.025em;
+  color: #303034;
+  margin: 0;
+  max-width: 760px;
+  text-wrap: pretty;
+}
+.reading-view .intro-disclosures {
+  margin: 45px auto;
+}
+.reading-view .intro-disclosures + .join-open {
+  margin-top: 40px;
+}
+@media (max-width: 700px) {
+  .wall-quote.has-story .story-preview {
+    font-size: 20px;
+  }
+  :lang(en) .wall-quote.has-story .story-preview {
+    font-size: 19px;
+  }
+}
+.mission-scene,
+#story-dialog {
+  scrollbar-width: thin;
+  scrollbar-color: #c5c5ca transparent;
+}
+.mission-scene::-webkit-scrollbar,
+#story-dialog::-webkit-scrollbar {
+  width: 3px;
+}
+.mission-scene::-webkit-scrollbar-thumb,
+#story-dialog::-webkit-scrollbar-thumb {
+  background: #c5c5ca;
+  border-radius: 8px;
+}
+.mission-scene::-webkit-scrollbar-button,
+#story-dialog::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* V8 measured masonry: natural text heights; no row stretching or text truncation. */
+.wall-grid {
+  display: block;
+  position: relative;
+}
+.wall-grid:not([data-masonry-ready]) {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+}
+.wall-grid[data-masonry-ready] > .wall-photo,
+.wall-grid[data-masonry-ready] > .wall-quote {
+  position: absolute;
+  margin: 0;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  align-self: start;
+  grid-column: auto;
+  overflow: visible;
+  box-sizing: border-box;
+}
+.wall-quote {
+  justify-content: flex-start;
+}
+.wall-quote.has-story {
+  grid-column: auto;
+  padding: 23px;
+}
+.wall-quote blockquote,
+.wall-quote.has-story .story-preview {
+  display: block;
+  overflow: visible;
+  text-overflow: clip;
+  max-height: none;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+}
+.wall-quote.has-story .story-preview {
+  font-size: 20px;
+  line-height: 1.6;
+}
+.wall-quote.has-story h3 {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.wall-photo img {
+  aspect-ratio: 4/3;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+.wall-grid[data-masonry-ready] {
+  overflow-anchor: none;
+}
+.wall-grid > * {
+  transition: none !important;
+}
+.story {
+  overflow-anchor: none;
+}
+@media (max-width: 1099px) {
+  .wall-grid:not([data-masonry-ready]) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 699px) {
+  .wall-grid:not([data-masonry-ready]) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .wall-quote.has-story {
+    padding: 16px;
+  }
+  .wall-quote.has-story .story-preview,
+  :lang(en) .wall-quote.has-story .story-preview {
+    font-size: 18px;
+  }
+}
+@media (max-width: 359px) {
+  .wall-grid:not([data-masonry-ready]) {
+    grid-template-columns: 1fr;
+  }
+  .wall-quote,
+  .wall-quote.has-story {
+    padding: 24px;
+  }
+}
+
+/* Content keeps natural heights; scroll-linked motion uses real pixel travel. */
+.wall-photo figcaption {
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.wall-quote figcaption {
+  overflow-wrap: anywhere;
+}
+/* One complete, source-verified mission paragraph, not a secondary caption. */
+.mission-copy p:first-child:last-child {
+  font-size: 17px;
+  line-height: 1.85;
+  max-width: 590px;
+  margin-inline: auto;
+}
+@media (max-width: 700px) {
+  .mission-copy p:first-child:last-child {
+    font-size: 16px;
+  }
+}
+
+/* Full whitepaper mission: a readable, measured scroll chapter, never a viewport card. */
+.mission-scene {
+  top: 17%;
+  left: 8%;
+  right: 8%;
+  max-height: none;
+  overflow: visible;
+  padding: 0 0 30px;
+}
+.mission-scene h2 {
+  max-width: 920px;
+  margin: 20px auto 42px;
+}
+.mission-body {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: left;
+}
+.mission-body p {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #515158;
+  margin: 0 0 34px;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+.mission-body .mission-lead {
+  font-size: 24px;
+  line-height: 1.7;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: #27272c;
+  margin-bottom: 30px;
+}
+.mission-body .mission-manifesto {
+  font-size: 20px;
+  color: #383b61;
+  padding-bottom: 36px;
+  border-bottom: 1px solid #e3e3e7;
+  margin-bottom: 40px;
+}
+.mission-body .mission-forces {
+  white-space: pre-line;
+  padding: 28px 0;
+  border-block: 1px solid #e3e3e7;
+  color: #383b61;
+}
+.mission-body .mission-equation {
+  font-size: 25px;
+  line-height: 1.65;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  text-align: center;
+  color: #27272c;
+  padding: 28px 0;
+}
+.mission-body .mission-final {
+  font-size: 18px;
+  color: #6e6e73;
+  padding-bottom: 20px;
+}
+.reading-view .mission-body {
+  margin-top: 40px;
+  margin-bottom: 90px;
+}
+@media (max-width: 700px) {
+  .mission-scene {
+    left: 7%;
+    right: 7%;
+  }
+  .mission-scene h2 {
+    font-size: 38px;
+    margin-bottom: 32px;
+  }
+  .mission-body p {
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 28px;
+  }
+  .mission-body .mission-lead {
+    font-size: 20px;
+    line-height: 1.8;
+  }
+  .mission-body .mission-manifesto {
+    font-size: 18px;
+    padding-bottom: 28px;
+  }
+  .mission-body .mission-equation {
+    font-size: 21px;
+    line-height: 1.8;
+  }
+  .mission-body .mission-final {
+    font-size: 16px;
+  }
+}
+
+.mission-conclusion {
+  white-space: pre-line;
+}
+
+.stage::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 105px;
+  background: linear-gradient(#fafafa 55%, transparent);
+  opacity: var(--reading-mask, 0);
+  z-index: 7;
+  pointer-events: none;
+}
+
+/* V10: explicit reading gutter, not a gradient fading readable text. */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+.stage::after {
+  height: max(76px, calc(env(safe-area-inset-top, 0px) + 60px));
+  background: #fafafa;
+  opacity: var(--reading-mask, 0);
+}
+.locale-control {
+  top: max(24px, calc(env(safe-area-inset-top, 0px) + 12px));
+}
+.mission-section-title {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: #383b61;
+  margin: 58px 0 18px;
+}
+.mission-body p {
+  color: #3e3e44;
+  text-wrap: pretty;
+  word-break: normal;
+}
+.mission-body .mission-forces {
+  border: 0;
+  padding: 0;
+  line-height: 2.15;
+}
+.mission-body .mission-manifesto {
+  border: 0;
+  padding-bottom: 0;
+}
+.mission-body .mission-equation {
+  padding: 16px 0;
+  font-size: 24px;
+}
+.mission-body .mission-final {
+  color: #515158;
+}
+@media (max-width: 700px) {
+  .brand {
+    top: max(23px, calc(env(safe-area-inset-top, 0px) + 12px));
+    left: 6%;
+    width: 100px;
+  }
+  .locale-control {
+    right: 6%;
+    max-width: 170px;
+  }
+  .map-stage {
+    position: absolute;
+    top: max(94px, calc(env(safe-area-inset-top, 0px) + 78px));
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .map-stage svg {
+    height: 100%;
+    width: 100%;
+    mask-image: radial-gradient(
+      ellipse var(--map-mask-size, 50%) var(--map-mask-size, 50%) at 50% 50%,
+      #000 72%,
+      transparent 100%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse var(--map-mask-size, 50%) var(--map-mask-size, 50%) at 50% 50%,
+      #000 72%,
+      transparent 100%
+    );
+  }
+  .map-controls {
+    bottom: -48px;
+  }
+  .mission-scene {
+    left: 8%;
+    right: 8%;
+  }
+  .mission-scene h2 {
+    font-size: 36px;
+    letter-spacing: -0.045em;
+  }
+  .mission-body p {
+    font-size: 16px;
+    line-height: 1.85;
+    margin-bottom: 30px;
+    letter-spacing: 0;
+  }
+  .mission-body .mission-lead {
+    font-size: 19px;
+    line-height: 1.8;
+  }
+  .mission-body .mission-manifesto {
+    font-size: 18px;
+    line-height: 1.85;
+  }
+  .mission-section-title {
+    font-size: 12px;
+    margin: 44px 0 16px;
+  }
+  .mission-body .mission-forces {
+    font-size: 16px;
+    line-height: 2.05;
+  }
+  .mission-body .mission-equation {
+    font-size: 21px;
+    line-height: 1.85;
+  }
+}
+.mission-forces .force-row {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid #e2e2e6;
+}
+.mission-forces .force-row:first-child {
+  padding-top: 0;
+}
+.mission-forces .force-row:last-child {
+  border-bottom: 0;
+}
+.mission-forces {
+  white-space: normal !important;
+}
+.formula-exponent {
+  font-size: 0.68em;
+  line-height: 1.4;
+  vertical-align: super;
+}
+.formula-power-marker {
+  position: absolute;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  .stage {
+    height: min(100svh, var(--visual-height, 100svh));
+    min-height: 0;
+  }
+}
+/* A clipped stage must not become a second scroll container when map buttons receive focus. */
+.stage {
+  overflow: clip;
+}
+
+/* V12 dialog-only motion; native top-layer focus and modal semantics retained. */
+dialog[data-dialog-motion] {
+  will-change: opacity, transform;
+}
+dialog[data-dialog-motion="opening"]::backdrop {
+  animation: hackit-dialog-backdrop-in 180ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+dialog[data-dialog-motion="closing"]::backdrop {
+  animation: hackit-dialog-backdrop-out 140ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+@keyframes hackit-dialog-backdrop-in {
+  from {
+    opacity: var(--dialog-backdrop-from, 0);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hackit-dialog-backdrop-out {
+  from {
+    opacity: var(--dialog-backdrop-from, 1);
+  }
+  to {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  dialog[data-dialog-motion] {
+    will-change: auto;
+  }
+  dialog[data-dialog-motion]::backdrop {
+    animation: none !important;
+  }
+}
+/* V12: a larger, genuinely navigable mobile world, without altering story scroll geometry. */
+.map-viewport {
+  width: 100%;
+  height: 100%;
+  overflow: clip;
+  scrollbar-width: thin;
+  scrollbar-color: #b6bcc3 transparent;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
+}
+.map-viewport:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.map-pan-hint {
+  display: none;
+}
+.map-viewport svg {
+  max-width: none;
+}
+@media (max-width: 700px) {
+  .map-pan-hint {
+    display: block;
+    position: absolute;
+    top: calc(100% + 56px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #72727b;
+    opacity: var(--world-progress, 0);
+    pointer-events: none;
+  }
+  .map-pan-hint:before {
+    content: "↔";
+    margin-right: 7px;
+  }
+  .map-viewport {
+    border-radius: 0;
+  }
+  .map-viewport svg {
+    flex: none;
+  }
+  .map-controls {
+    bottom: -48px;
+  }
+}
+/* V13: optical East Asia frame on fine-pointer desktop only; World resolves to no feather. */
+@media (min-width: 900px) and (pointer: fine) {
+  .map-viewport {
+    margin-inline: auto;
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent 0,
+        #000 var(--focus-edge-x, 0%),
+        #000 calc(100% - var(--focus-edge-x, 0%)),
+        transparent 100%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        #000 var(--focus-edge-top, 0%),
+        #000 calc(100% - var(--focus-edge-bottom, 0%)),
+        transparent 100%
+      );
+    mask-composite: intersect;
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        transparent 0,
+        #000 var(--focus-edge-x, 0%),
+        #000 calc(100% - var(--focus-edge-x, 0%)),
+        transparent 100%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0,
+        #000 var(--focus-edge-top, 0%),
+        #000 calc(100% - var(--focus-edge-bottom, 0%)),
+        transparent 100%
+      );
+    -webkit-mask-composite: source-in;
+  }
+}
+/* V14: desktop reading has no full-width header cover; mobile safe-area gutter stays intact. */
+@media (min-width: 700px) and (pointer: fine) {
+  .stage::after {
+    display: none;
+  }
+}
+/* V15: the language selector belongs to the hero, never a persistent reading overlay. */
+.locale-control {
+  position: absolute;
+}
+.map-scene > .locale-control {
+  position: absolute;
+}
+
+/* Balance English display lines without breaking the hands-on phrase. */
+:lang(en) .mission-scene h2,
+:lang(en) .reading-view > h2 {
+  text-wrap: balance;
+}

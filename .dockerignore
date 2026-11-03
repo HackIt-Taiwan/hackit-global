@@ -1,0 +1,37 @@
+# Deny by default: Docker receives only the inputs needed for the public build.
+**
+!Dockerfile
+!.dockerignore
+!package.json
+!requirements.txt
+!server/
+!server/**
+!scripts/
+!scripts/**
+!source/
+!source/**
+
+# Keep local configuration, credentials, history, QA and unused build outputs out.
+**/.git
+**/.git/**
+**/.env
+**/.env.*
+**/.aws
+**/.aws/**
+**/.codex
+**/.codex/**
+**/.agents
+**/.agents/**
+**/node_modules
+**/node_modules/**
+**/__pycache__
+**/__pycache__/**
+**/.DS_Store
+**/*qa*
+**/*QA*
+**/*.log
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+source/worker-build-report.json
