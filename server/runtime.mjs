@@ -231,6 +231,12 @@ export async function createSiteServer({ publicDir, site: inputSite }) {
   const site = validateSiteConfig(inputSite),
     assets = await loadAssets(publicDir);
   const defaultCsp = contentSecurityPolicy();
+  // Public deployment requires verified HTTPS. Start with a one-day HSTS policy
+  // without subdomain/preload commitments; browsers ignore this header on HTTP.
+  const hsts = site.visibility === "public" ? "max-age=86400" : null;
+  const hstsHeaderLine = hsts
+    ? "Strict-Transport-Security: " + hsts + "\r\n"
+    : "";
   const baseHeaders = {
     "Content-Security-Policy": defaultCsp,
     "X-Content-Type-Options": "nosniff",
@@ -242,6 +248,7 @@ export async function createSiteServer({ publicDir, site: inputSite }) {
     "Cross-Origin-Resource-Policy": "same-origin",
     "X-DNS-Prefetch-Control": "off",
     "Origin-Agent-Cluster": "?1",
+    ...(hsts ? { "Strict-Transport-Security": hsts } : {}),
     ...(site.indexing ? {} : { "X-Robots-Tag": "noindex, nofollow" }),
   };
   function send(req, res, status, body = "", headers = {}) {
@@ -288,7 +295,8 @@ export async function createSiteServer({ publicDir, site: inputSite }) {
         const { path, parameters } = target;
         if (path === "/healthz") return send(req, res, 200, "ok\n");
         // Coolify terminates TLS. No forwarded host/protocol/IP/country header is
-        // trusted here; HTTPS redirection and HSTS belong at its verified edge.
+        // trusted here. HTTPS redirection remains the verified edge's job;
+        // the public HSTS policy follows explicit site configuration instead.
         const host = String(req.headers.host || "").toLowerCase();
         if (
           site.visibility === "public" &&
@@ -355,20 +363,22 @@ export async function createSiteServer({ publicDir, site: inputSite }) {
             Vary: "Accept-Encoding",
           });
         const representation = asset.representations.get(encoding);
+        const isHtml = asset.mime.startsWith("text/html");
+        const cacheControl =
+          site.visibility === "private"
+            ? "private, max-age=0, must-revalidate"
+            : isHtml
+              ? "public, max-age=0, must-revalidate"
+              : asset.immutable
+                ? "public, max-age=31536000, immutable"
+                : "public, max-age=3600, must-revalidate";
         const headers = {
           "Content-Type": asset.mime,
           ETag: representation.etag,
           "Last-Modified": asset.modified.toUTCString(),
           "Content-Security-Policy": asset.csp,
           Vary: "Accept-Encoding",
-          "Cache-Control":
-            site.visibility === "private"
-              ? "private, max-age=0, must-revalidate"
-              : asset.mime.startsWith("text/html")
-                ? "public, max-age=0, must-revalidate"
-                : asset.immutable
-                  ? "public, max-age=31536000, immutable"
-                  : "public, max-age=3600, must-revalidate",
+          "Cache-Control": cacheControl + (isHtml ? ", no-transform" : ""),
           ...(encoding === "identity" ? {} : { "Content-Encoding": encoding }),
         };
         const noneMatch = req.headers["if-none-match"];
@@ -407,7 +417,9 @@ export async function createSiteServer({ publicDir, site: inputSite }) {
   );
   server.on("upgrade", (_req, socket) =>
     socket.end(
-      "HTTP/1.1 400 Bad Request\r\nConnection: close\r\nContent-Length: 0\r\n\r\n",
+      "HTTP/1.1 400 Bad Request\r\nConnection: close\r\n" +
+        hstsHeaderLine +
+        "Content-Length: 0\r\n\r\n",
     ),
   );
   server.on("clientError", (error, socket) => {
@@ -417,7 +429,9 @@ export async function createSiteServer({ publicDir, site: inputSite }) {
           (error.code === "HPE_HEADER_OVERFLOW"
             ? "431 Request Header Fields Too Large"
             : "400 Bad Request") +
-          "\r\nConnection: close\r\nContent-Length: 0\r\n\r\n",
+          "\r\nConnection: close\r\n" +
+          hstsHeaderLine +
+          "Content-Length: 0\r\n\r\n",
       );
   });
   return server;

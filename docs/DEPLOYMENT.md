@@ -54,7 +54,7 @@ Configure the application to build this Dockerfile, listen on container port `30
 
 Route www to this new application only after rechecking current DNS records and domain bindings. Read-only discovery is not a reservation: repeat conflict checks immediately before changes. Record prior DNS values and the previous image/configuration before cutover. Keep private IDs, addresses, and credentials out of this runbook.
 
-The verified ingress must terminate TLS, redirect HTTP to HTTPS, and apply the intended HSTS policy. Node does not infer HTTPS from forwarded headers. Configure apex-to-www without a loop; the app already redirects exact apex Host requests to the configured www origin. Restrict direct origin access where practical and apply ingress request/connection limits.
+The verified ingress must terminate TLS and redirect HTTP to HTTPS. Public production responses include the initial HSTS policy `max-age=86400`; private builds omit it. The 24-hour lifetime limits rollback persistence while live HTTPS and redirect behavior is verified, and deliberately excludes `includeSubDomains` and `preload`. Browsers ignore HSTS received over plain HTTP; Node chooses this policy from explicit configuration, without trusting forwarded headers. Review a longer or broader policy only after verification. Configure apex-to-www without a loop; the app already redirects exact apex Host requests to the configured www origin. Restrict direct origin access where practical and apply ingress request/connection limits.
 
 ## Verify the public route
 
@@ -64,7 +64,7 @@ After an authorized deployment, collect evidence from outside the origin network
 - `/healthz` returns 200; `/zh-TW/`, `/zh-HK/`, `/zh-CN/`, and `/en/` return matching full documents and canonical metadata.
 - Root negotiation honors manual cookies and weighted browser language; `?lang` and explicit locale paths take precedence. Spoofed country/forwarded headers do not create country metadata.
 - Resources and CSP load correctly. Map controls, full stories, keyboard dialogs, reduced motion, and no-JavaScript reading work on desktop and physical mobile devices.
-- Headers, compression, validators, robots, and sitemap match the intended settings. Source/config/fixture paths return 404.
+- Headers, compression, validators, robots, and sitemap match the intended settings. Verify public HSTS is exactly `max-age=86400`, with no subdomain/preload directives, and HTML includes `no-transform`. Source/config/fixture paths return 404.
 - Contact/Taiwan links reach their destinations. The approved publication scope, rollback ownership, and operational alerts are recorded.
 
 Keep failed checks as unresolved blockers. Local tests do not replace these live checks.
@@ -74,6 +74,8 @@ Keep failed checks as unresolved blockers. Local tests do not replace these live
 Node works without a CDN. CDN caching, replication, load balancing, and monitoring are operational choices to configure and verify, not capabilities proven by this handoff.
 
 For a CDN, preserve `Content-Encoding`, representation ETags, and `Vary: Accept-Encoding`. Honor HTML revalidation and use immutable caching only for verified fingerprinted assets. Bypass cache for locale-negotiation redirects (`/`, `/index.html`, valid `?lang`), `/api/locale`, `/healthz`, and errors. Respect private/no-store responses; never reuse a manual-choice redirect across visitors. Verify using different cookies and language headers.
+
+HTML also includes `Cache-Control: no-transform`. For Cloudflare, keep Origin Cache Control enabled and explicitly turn off Email Address Obfuscation for the site. Its [email-obfuscation documentation](https://developers.cloudflare.com/waf/tools/scrape-shield/email-address-obfuscation/#troubleshoot-email-obfuscation) lists `no-transform` as an exclusion, while the [cache-control table](https://developers.cloudflare.com/cache/concepts/cache-control/#directives) allows transformations when Origin Cache Control is disabled. After redeploying, compare delivered locale HTML with the build, check raw native `mailto:` links without JavaScript, and confirm no injected email-decoding scripts or `/cdn-cgi/l/email-protection` links remain. An edge setting alone is not proof of byte preservation.
 
 Alert on external health/locale failures, elevated 5xx rates, latency, restarts, memory/CPU pressure, certificate expiry, and cache/origin bandwidth. Minimize ingress logging; the app does not log visitors. Test alerts and escalation ownership before launch. Measure realistic payloads/concurrency before sizing instances or making traffic-capacity claims.
 

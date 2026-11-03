@@ -49,7 +49,7 @@ Templates, locale code, fixtures, media, Dockerfile, and build configuration are
 
 Requests resolve an already-loaded asset map; they do not select arbitrary filesystem reads. Malformed encoding, traversal/dot segments, unsupported methods, request bodies, and oversized targets/headers are rejected. Source notes, manifests, configuration, dotfiles, directory listings, and unknown extensions are not public routes.
 
-Canonical origin is not derived from request headers. Public exact-apex Host requests redirect to the configured www origin; arbitrary Host values cannot choose an external redirect target. Forwarded host, protocol, IP, and country headers are untrusted. HTTPS enforcement and HSTS belong at the separately verified ingress.
+Canonical origin is not derived from request headers. Public exact-apex Host requests redirect to the configured www origin; arbitrary Host values cannot choose an external redirect target. Forwarded host, protocol, IP, and country headers are untrusted. HTTPS enforcement belongs at the separately verified ingress. Public production responses set an initial one-day HSTS policy from explicit configuration; private builds omit HSTS.
 
 ## Locale routing
 
@@ -59,7 +59,9 @@ Country detection is deliberately absent. `/api/locale` returns `{"country":null
 
 ## HTTP policies and operations
 
-The Node runtime prepares its own identity/gzip/Brotli variants at startup; build sidecars are not independent public routes. ETags identify each representation. Public HTML revalidates; verified fingerprinted assets cache for one year with `immutable`; unversioned assets revalidate after at most one hour. Private builds require private revalidation. Health, locale metadata, errors, and negotiated redirects are uncached. Robots and sitemap follow explicit indexing configuration.
+The Node runtime prepares its own identity/gzip/Brotli variants at startup; build sidecars are not independent public routes. ETags identify each representation. HTML revalidation includes `no-transform` for public and private builds, preserving document bytes and native email links through intermediaries. Verified fingerprinted assets cache for one year with `immutable`; unversioned assets revalidate after at most one hour. Private builds require private revalidation. Health, locale metadata, errors, and negotiated redirects are uncached. Robots and sitemap follow explicit indexing configuration.
+
+Public responses send `Strict-Transport-Security: max-age=86400` without `includeSubDomains` or `preload`. The initial 24-hour lifetime limits persistent browser policy while live HTTPS/redirect behavior is verified; increasing it is a separate deployment decision. Browsers ignore the header over plain HTTP, and no forwarded-protocol header controls it. Keep CDN Origin Cache Control enabled and disable HTML transformations such as email obfuscation, then verify the actual edge document.
 
 CSP limits resources to the same origin, hashes inline script blocks, and denies inline event handlers, eval, embedding, forms, objects, and workers. Inline styles remain permitted because the approved animation and masonry code writes CSSOM properties. Additional headers restrict framing, MIME sniffing, cross-origin resources, referrers, and unnecessary browser capabilities.
 

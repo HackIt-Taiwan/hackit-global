@@ -34,6 +34,14 @@ unversioned public assets cache for at most one hour and revalidate, and private
 builds retain private revalidation plus noindex. Gzip and Brotli are prepared at
 startup. Range requests receive a complete 200 representation.
 
+HTML responses also set `Cache-Control: no-transform`, including compressed,
+HEAD, and revalidation responses, to preserve the rendered document and native
+email links through a CDN. Cloudflare documents this directive as an
+[Email Address Obfuscation exclusion](https://developers.cloudflare.com/waf/tools/scrape-shield/email-address-obfuscation/#troubleshoot-email-obfuscation).
+Keep Origin Cache Control enabled, explicitly disable email obfuscation, and
+verify the delivered HTML: [Cloudflare's cache table](https://developers.cloudflare.com/cache/concepts/cache-control/#directives)
+allows transformations when Origin Cache Control is disabled.
+
 CSP hashes shipped inline script blocks, denies inline event handlers/eval,
 restricts resources to the same origin, and denies frames, objects, forms and
 workers. Inline styles remain permitted because the approved animations and
@@ -43,8 +51,13 @@ unneeded browser capabilities also have explicit response policies.
 
 Coolify should build this Dockerfile, route `https://www.hackit.global` to port
 3000, and use `/healthz` for health checks. Terminate HTTPS and configure HTTP
-redirects/HSTS at Coolify's verified ingress. The app cannot authenticate incoming
-forwarded-protocol headers, so it does not infer HTTPS from them. The container
+redirects at Coolify's verified ingress. Public production responses send
+`Strict-Transport-Security: max-age=86400`; private builds omit it. This initial
+24-hour policy limits rollback persistence while live HTTPS and redirects are
+verified. It deliberately omits `includeSubDomains` and `preload`; review any
+longer or broader commitment separately. Browsers ignore HSTS received over plain
+HTTP. The policy follows explicit public configuration and never trusts incoming
+forwarded-protocol headers. The container
 runs as distroless `nonroot` (UID/GID 65532) with root-owned app files. Recommended runtime
 options are a read-only filesystem, dropped Linux capabilities, no-new-privileges,
 and resource limits. No persistent volume is needed. The final image excludes

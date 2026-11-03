@@ -226,6 +226,7 @@ try {
   });
   equal(apex.status, 308);
   equal(apex.headers.location, "https://www.hackit.global/en/?ref=x");
+  equal(apex.headers["strict-transport-security"], "max-age=86400");
   const localeApi = await request(server, "/api/locale", {
     headers: { "CF-IPCountry": "TW", "X-Geo-Country": "CN" },
   });
@@ -280,11 +281,11 @@ try {
     equal((await request(server, path)).status, 400, path);
   }
   equal((await request(server, "/" + "a".repeat(5000))).status, 414);
-  equal(
-    (await request(server, "/", { headers: { "X-Large": "a".repeat(9000) } }))
-      .status,
-    431,
-  );
+  const oversizedHeaders = await request(server, "/", {
+    headers: { "X-Large": "a".repeat(9000) },
+  });
+  equal(oversizedHeaders.status, 431);
+  equal(oversizedHeaders.headers["strict-transport-security"], "max-age=86400");
   const post = await request(server, "/", { method: "POST" });
   equal(post.status, 405);
   equal(post.headers.allow, "GET, HEAD");
@@ -307,6 +308,12 @@ try {
       await raw(server, "GET / HTTP/1.1\r\nConnection: close\r\n\r\n")
     ).startsWith("HTTP/1.1 400"),
   );
+  const upgrade = await raw(
+    server,
+    "GET /en/ HTTP/1.1\r\nHost: www.hackit.global\r\nConnection: Upgrade\r\nUpgrade: websocket\r\n\r\n",
+  );
+  ok(upgrade.startsWith("HTTP/1.1 400"));
+  ok(upgrade.includes("Strict-Transport-Security: max-age=86400\r\n"));
 
   const identity = await request(server, "/app.js");
   equal(identity.status, 200);
@@ -423,7 +430,36 @@ try {
   const document = await request(server, "/en/");
   equal(
     document.headers["cache-control"],
-    "public, max-age=0, must-revalidate",
+    "public, max-age=0, must-revalidate, no-transform",
+  );
+  equal(document.headers["strict-transport-security"], "max-age=86400");
+  for (const encoding of ["identity", "gzip", "br"]) {
+    const headers = { "Accept-Encoding": encoding };
+    const html = await request(server, "/en/", { headers });
+    equal(html.headers["cache-control"], document.headers["cache-control"]);
+    equal(html.headers["strict-transport-security"], "max-age=86400");
+    const decoded =
+      encoding === "gzip"
+        ? gunzipSync(html.body)
+        : encoding === "br"
+          ? brotliDecompressSync(html.body)
+          : html.body;
+    equal(decoded, document.body, "HTML bytes survive compression unchanged");
+    const cached = await request(server, "/en/", {
+      headers: { ...headers, "If-None-Match": html.headers.etag },
+    });
+    equal(cached.status, 304);
+    equal(cached.headers["cache-control"], document.headers["cache-control"]);
+    equal(cached.headers["strict-transport-security"], "max-age=86400");
+  }
+  equal(
+    (
+      await request(server, "/en/", {
+        headers: { "X-Forwarded-Proto": "http", Forwarded: "proto=http" },
+      })
+    ).headers["strict-transport-security"],
+    "max-age=86400",
+    "Public HSTS does not depend on untrusted forwarding headers",
   );
   equal(document.headers["x-robots-tag"], undefined);
   const csp = document.headers["content-security-policy"];
@@ -461,12 +497,19 @@ try {
     "/robots.txt",
     "/missing",
     "/?lang=en",
-  ])
+  ]) {
+    const head = await request(server, path, { method: "HEAD" });
+    equal(head.body.length, 0, path);
+    equal(head.headers["strict-transport-security"], "max-age=86400", path);
+    if (path === "/en/")
+      equal(head.headers["cache-control"], document.headers["cache-control"]);
     equal(
-      (await request(server, path, { method: "HEAD" })).body.length,
-      0,
+      (await request(server, path)).headers["strict-transport-security"],
+      "max-age=86400",
       path,
     );
+  }
+  equal(post.headers["strict-transport-security"], "max-age=86400");
   ok(
     (await request(server, "/robots.txt")).body.includes(
       "Sitemap: https://www.hackit.global/sitemap.xml",
@@ -492,11 +535,37 @@ try {
     (await request(privateServer, "/app.js")).headers["cache-control"],
     "private, max-age=0, must-revalidate",
   );
+  const privateHtml = await request(privateServer, "/en/", {
+    headers: { "X-Forwarded-Proto": "https", Forwarded: "proto=https" },
+  });
+  equal(
+    privateHtml.headers["cache-control"],
+    "private, max-age=0, must-revalidate, no-transform",
+  );
+  for (const path of ["/en/", "/app.js", "/missing", "/?lang=en", "/healthz"]) {
+    equal(
+      (
+        await request(privateServer, path, {
+          headers: { "X-Forwarded-Proto": "https" },
+        })
+      ).headers["strict-transport-security"],
+      undefined,
+      "Private builds omit HSTS even with spoofed HTTPS headers: " + path,
+    );
+  }
   equal(
     (await request(privateServer, "/robots.txt")).body.toString(),
     "User-agent: *\nDisallow: /\n",
   );
   equal((await request(privateServer, "/sitemap.xml")).status, 404);
+  const privateOversizedHeaders = await request(privateServer, "/", {
+    headers: { "X-Large": "a".repeat(9000) },
+  });
+  equal(privateOversizedHeaders.status, 431);
+  equal(
+    privateOversizedHeaders.headers["strict-transport-security"],
+    undefined,
+  );
 
   equal(savedLocale("hackit-locale=ZH-hk"), "zh-HK");
   equal(browserLocale("en;q=no,zh-CN;q=0.8"), "zh-CN");
@@ -556,6 +625,13 @@ try {
     ok(response.body.includes('lang="' + locale + '"'));
     ok(response.body.includes("https://www.hackit.global/" + locale + "/"));
     equal(response.headers["x-robots-tag"], undefined);
+    equal(
+      response.headers["cache-control"],
+      "public, max-age=0, must-revalidate, no-transform",
+    );
+    equal(response.headers["strict-transport-security"], "max-age=86400");
+    ok(response.body.includes('href="mailto:hello@hackit.one"'));
+    ok(!response.body.includes("/cdn-cgi/l/email-protection"));
   }
   const actualHtml = (await request(actual, "/en/")).body.toString();
   for (const match of actualHtml.matchAll(
