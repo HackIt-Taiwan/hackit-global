@@ -18,7 +18,7 @@ RUN npm run build
 
 # Official maintained Google distroless Node 24 Debian 13 nonroot image index,
 # verified 2026-11-02 at https://gcr.io/v2/distroless/nodejs24-debian13/manifests/nonroot
-FROM gcr.io/distroless/nodejs24-debian13:nonroot@sha256:b8cec4b2f2126ff7bd034ec9ac207ffb3272667dfdc48376e3b035d3270549ba AS runtime
+FROM gcr.io/distroless/nodejs24-debian13:nonroot@sha256:088a01637f22908632ba09018be2e0b516f2fa6f7869c191d29491139db43c78 AS runtime
 ENV NODE_ENV=production PORT=3000 HOST=0.0.0.0
 WORKDIR /app
 # Only the built public tree, public site metadata, and dependency-free runtime
