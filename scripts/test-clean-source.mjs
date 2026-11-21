@@ -18,7 +18,7 @@ const manifest = JSON.parse(
 for (const entry of manifest.files) {
   assert.match(
     entry.path,
-    /^(?:\/(?:zh-TW|zh-HK|zh-CN|en)\/index\.html|\/(?:assets\/)?[a-z0-9-]+\.[a-f0-9]{12}\.(?:js|css|svg|png|webp))$/i,
+    /^(?:\/favicon\.png|\/(?:zh-TW|zh-HK|zh-CN|en)\/index\.html|\/(?:assets\/)?[a-z0-9-]+\.[a-f0-9]{12}\.(?:js|css|svg|png|webp))$/i,
   );
   assert(
     !/\.env|provenance|feedback-locales|mission-locales|site-config|test|README/.test(

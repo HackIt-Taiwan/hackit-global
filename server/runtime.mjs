@@ -16,7 +16,7 @@ const PUBLIC_FILES = new Set([
   "masonry.js",
   "style.css",
   "entry.css",
-  "favicon.ico",
+  "favicon.png",
 ]);
 const MIME = Object.freeze({
   ".html": "text/html; charset=utf-8",

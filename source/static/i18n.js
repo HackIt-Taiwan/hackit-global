@@ -79,8 +79,9 @@
   }
   const D = {
     "zh-TW": {
-      title: "HackIt — 讓想法發生",
-      description: "HackIt — 由年輕 Builder 一起打造的創作與共創社群。",
+      title: "HackIt",
+      description:
+        "HackIt 是由青少年為青少年打造的創作社群。我們從台灣出發，透過黑客松和共同創作，讓年輕人把想法變成現實。",
       skip: "略過捲動動畫，閱讀內容",
       language: "語言",
       map: "HackIt 全球地圖",
@@ -137,8 +138,9 @@
       ],
     },
     "zh-HK": {
-      title: "HackIt — 將想法付諸實踐",
-      description: "HackIt — 由年輕 Builder 一同建立的創作社群。",
+      title: "HackIt",
+      description:
+        "HackIt 是由青少年為青少年打造的創作社群。我們由台灣出發，透過黑客松和共同創作，讓年輕人把想法付諸實踐。",
       skip: "略過捲動動畫，直接閱讀",
       language: "語言",
       map: "HackIt 世界地圖",
@@ -195,8 +197,9 @@
       ],
     },
     "zh-CN": {
-      title: "HackIt — 让想法成为现实",
-      description: "HackIt — 由年轻 Builder 共同打造的创作社区。",
+      title: "HackIt",
+      description:
+        "HackIt 是由青少年为青少年打造的创作社区。我们从台湾出发，通过黑客松和共同创作，让年轻人把想法变成现实。",
       skip: "跳过滚动动画，直接阅读",
       language: "语言",
       map: "HackIt 世界地图",
@@ -253,9 +256,9 @@
       ],
     },
     en: {
-      title: "HackIt — Make ideas happen",
+      title: "HackIt",
       description:
-        "HackIt — a community of young Builders creating and building together.",
+        "HackIt is a youth-led creative community that started in Taiwan. Through hackathons and building together, young people turn ideas into reality.",
       skip: "Skip the scroll animation and read the content",
       language: "Language",
       map: "HackIt world map",
