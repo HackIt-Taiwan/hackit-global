@@ -83,6 +83,8 @@ for (const [file, bytes] of sources) {
     );
   await emit(fingerprints.get(file), output, textual);
 }
+// Favicons are requested by crawlers; preserve one stable canonical URL.
+await emit("favicon.png", await readFile(new URL("favicon.png", input)), false);
 for (const locale of locales)
   await emit(
     locale + "/index.html",

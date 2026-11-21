@@ -151,7 +151,21 @@ try {
     resolve(fixture, "assets/.hidden.png"),
     "PRIVATE_FIXTURE_MARKER",
   );
+  const favicon = await readFile(resolve(project, "source/static/favicon.png"));
+  await writeFile(resolve(fixture, "favicon.png"), favicon);
   const server = await listen({ publicDir: fixture, site });
+  const iconResponse = await request(server, "/favicon.png", {
+    headers: { "User-Agent": "Googlebot-Image/1.0" },
+  });
+  equal(iconResponse.status, 200);
+  equal(iconResponse.headers["content-type"], "image/png");
+  equal(
+    iconResponse.headers["cache-control"],
+    "public, max-age=3600, must-revalidate",
+  );
+  equal(iconResponse.body, favicon);
+  equal(iconResponse.headers["x-robots-tag"], undefined);
+
   equal(server.requestTimeout, 10_000);
   equal(server.headersTimeout, 10_000);
   equal(server.maxConnections, 512);

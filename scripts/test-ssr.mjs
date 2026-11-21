@@ -19,6 +19,18 @@ for (const locale of api.LOCALES) {
     "utf8",
   );
   const d = api.D[locale];
+  assert.equal(d.title, "HackIt");
+  assert(page.includes("<title>HackIt</title>"));
+  assert(page.includes('name="description" content="' + d.description + '"'));
+  assert(
+    page.includes(
+      'rel="icon" type="image/png" sizes="512x512" href="/favicon.png"',
+    ),
+  );
+  assert(page.includes('property="og:title" content="HackIt"'));
+  assert(page.includes('name="twitter:title" content="HackIt"'));
+  if (locale.startsWith("zh")) assert.match(d.description, /青少年.*青少年/);
+
   assert.equal(api.QUOTES[locale].length, 16);
   assert.equal(api.PHOTO_ALTS[locale].length, 42);
   assert.equal(d.missionSections.length, 9);
@@ -88,9 +100,19 @@ for (const locale of api.LOCALES) {
   assert.equal(graph["@graph"][0].name, "HackIt");
   assert.equal(graph["@graph"][0].url, config.origin + "/");
   assert.equal(graph["@graph"][1].inLanguage, locale);
+  assert.equal(graph["@graph"][1].name, "HackIt");
+  assert.equal(graph["@graph"][2]["@type"], "WebSite");
+  assert.equal(graph["@graph"][2].name, "HackIt");
+  assert.equal(graph["@graph"][2].url, config.origin + "/");
   for (const image of api.PHOTO_ALTS[locale])
     assert(page.includes(image.replaceAll("&", "&amp;")));
 }
+const favicon = await readFile(new URL("dist/public/favicon.png", root));
+assert(
+  favicon.equals(await readFile(new URL("source/static/favicon.png", root))),
+);
+assert.equal(favicon.readUInt32BE(16), 512);
+assert.equal(favicon.readUInt32BE(20), 512);
 console.log(
   checks +
     " complete-content assertions passed across four prerendered locales, with configured canonical/hreflang/JSON-LD and social metadata.",
