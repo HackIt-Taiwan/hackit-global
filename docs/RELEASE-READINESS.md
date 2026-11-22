@@ -45,7 +45,7 @@ These are local laboratory observations, not physical-device, production-CDN, av
 
 1. Verify that the source release matches the authorized current curated content and excludes raw feedback, private consent/provenance records, credentials, and internal QA. The owner's publication approval is recorded in [content rights](CONTENT-RIGHTS.md); no broad reuse license has been invented.
 2. Publish the authorized repository and create the separate Coolify application, verify remote CI/build/deployed revision, and configure only the intended domain after repeating conflict checks. Record the resulting repository revision and public verification evidence without private service identifiers.
-3. Verify external DNS, HTTPS certificate/redirects/HSTS, actual CDN/cache behavior, origin controls, links, all locale flows, and rollback on `www.hackit.global`.
+3. Verify external DNS, HTTPS certificate/redirects/HSTS, actual CDN/cache behavior, origin controls, links, all locale flows, and rollback on `hackit.one`.
 4. Establish operational alerting, incident ownership, resource limits, cache policy, realistic traffic measurements, and any replication/availability requirements. A single shared origin and local concurrency smoke do not prove readiness for millions of users.
 5. Country inference remains deliberately unavailable until a trusted proxy chain is established. Browser language and explicit/manual preferences work; no visitor IP is processed by the application.
 

@@ -1,6 +1,6 @@
 # HackIt Global
 
-The live [HackIt Global website](https://www.hackit.global) and its [public source](https://github.com/HackIt-Taiwan/hackit-global), with complete prerendered content in `zh-TW`, `zh-HK`, `zh-CN`, and `en`.
+The live [HackIt Global website](https://hackit.one) and its [public source](https://github.com/HackIt-Taiwan/hackit-global), with complete prerendered content in `zh-TW`, `zh-HK`, `zh-CN`, and `en`.
 
 The framework-free enhanced view moves from an interactive map through an ASCII/photo transition, a responsive photo and reflection wall, the full nine-paragraph mission and formula, and a join dialog. Only Taiwan is active on the map. Reduced-motion and no-JavaScript views retain the substantive content and full participant stories.
 

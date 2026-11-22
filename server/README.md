@@ -5,7 +5,7 @@ reads `dist/site-config.json`; an unbuilt checkout falls back to `source/static`
 and `source/site-config.json`. No npm dependencies, secrets, runtime writes, or
 external requests are required. `PORT` defaults to 3000 and `HOST` to 0.0.0.0.
 Site origin, visibility, and indexing come only from the explicit build config.
-The public production origin is `https://www.hackit.global`.
+The public production origin is `https://hackit.one`.
 
 Only the four locale documents, named frontend scripts/styles, and supported
 images/fonts inside `assets` are admitted to the in-memory static map at startup.
@@ -21,8 +21,8 @@ forwarded host, forwarded protocol, or forwarded IP header is trusted. Adding a
 country integration requires separately verifying its entire proxy chain and
 header overwrite rules; there is deliberately no switch that trusts such headers.
 Redirects that vary by cookie/language are not cacheable. Localized documents
-always honor their explicit locale path. `hackit.global` Host requests redirect
-to the configured www production origin; arbitrary Host values cannot change
+always honor their explicit locale path. Requests to `www.hackit.one`, `hackit.global`, and `www.hackit.global` redirect
+to the configured production origin; arbitrary Host values cannot change
 canonical metadata or create an external redirect.
 
 The server supports only GET and HEAD, rejects request bodies, bounds URL/header
@@ -49,7 +49,7 @@ masonry layout write CSSOM properties. No external fonts/scripts/images are
 needed. Framing, MIME sniffing, cross-origin resources, referrer handling, and
 unneeded browser capabilities also have explicit response policies.
 
-Coolify should build this Dockerfile, route `https://www.hackit.global` to port
+Coolify should build this Dockerfile, route `https://hackit.one` to port
 3000, and use `/healthz` for health checks. Terminate HTTPS and configure HTTP
 redirects at Coolify's verified ingress. Public production responses send
 `Strict-Transport-Security: max-age=86400`; private builds omit it. This initial

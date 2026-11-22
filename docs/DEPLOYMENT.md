@@ -1,11 +1,11 @@
 # Deployment and rollback
 
-This runbook describes the candidate deployment to `https://www.hackit.global`. It records no live deployment success. On 2026-11-03, the owner authorized official website deployment and public source publication of the current curated content, including photographs and participant feedback. Final revision/CI checks and public DNS/TLS/ingress verification remain operational release gates. Publication approval does not grant a blanket downstream reuse license.
+This runbook describes the candidate deployment to `https://hackit.one`. It records no live deployment success. On 2026-11-03, the owner authorized official website deployment and public source publication of the current curated content, including photographs and participant feedback. Final revision/CI checks and public DNS/TLS/ingress verification remain operational release gates. Publication approval does not grant a blanket downstream reuse license.
 
 ## Prepare a candidate
 
 1. Publish the current curated release within the owner's recorded [publication scope](CONTENT-RIGHTS.md) to `HackIt-Taiwan/hackit-global`. Exclude raw feedback, consent records, private provenance, credentials, and internal QA artifacts. Retain third-party notices; do not add a reuse license by assumption.
-2. Review `source/site-config.json`. Production requires origin `https://www.hackit.global`, explicit `visibility: "public"`, and an intentional indexing setting. For private staging use an HTTPS staging origin, `visibility: "private"`, and `indexing: false`, then rebuild. These settings are not authentication; restrict staging access at the ingress.
+2. Review `source/site-config.json`. Production requires origin `https://hackit.one`, explicit `visibility: "public"`, and an intentional indexing setting. For private staging use an HTTPS staging origin, `visibility: "private"`, and `indexing: false`, then rebuild. These settings are not authentication; restrict staging access at the ingress.
 3. Install and verify from the repository root:
 
    ```sh
@@ -52,9 +52,9 @@ In the authorized Coolify environment, create a **new project and application**.
 
 Configure the application to build this Dockerfile, listen on container port `3000`, and use `/healthz`. Pass optional listener variables through the host environment; the process does not load `.env` files. Keep deployment/registry credentials in the hosting secret store, never in source, build arguments, URLs, screenshots, or archives.
 
-Route www to this new application only after rechecking current DNS records and domain bindings. Read-only discovery is not a reservation: repeat conflict checks immediately before changes. Record prior DNS values and the previous image/configuration before cutover. Keep private IDs, addresses, and credentials out of this runbook.
+Route the production hostnames to this new application only after rechecking current DNS records and domain bindings. Read-only discovery is not a reservation: repeat conflict checks immediately before changes. Record prior DNS values and the previous image/configuration before cutover. Keep private IDs, addresses, and credentials out of this runbook.
 
-The verified ingress must terminate TLS and redirect HTTP to HTTPS. Public production responses include the initial HSTS policy `max-age=86400`; private builds omit it. The 24-hour lifetime limits rollback persistence while live HTTPS and redirect behavior is verified, and deliberately excludes `includeSubDomains` and `preload`. Browsers ignore HSTS received over plain HTTP; Node chooses this policy from explicit configuration, without trusting forwarded headers. Review a longer or broader policy only after verification. Configure apex-to-www without a loop; the app already redirects exact apex Host requests to the configured www origin. Restrict direct origin access where practical and apply ingress request/connection limits.
+The verified ingress must terminate TLS and redirect HTTP to HTTPS. Public production responses include the initial HSTS policy `max-age=86400`; private builds omit it. The 24-hour lifetime limits rollback persistence while live HTTPS and redirect behavior is verified, and deliberately excludes `includeSubDomains` and `preload`. Browsers ignore HSTS received over plain HTTP; Node chooses this policy from explicit configuration, without trusting forwarded headers. Review a longer or broader policy only after verification. Route the apex and www hostnames for both domains to this service. The app redirects the three aliases to the canonical apex and preserves the path and query. Restrict direct origin access where practical and apply ingress request/connection limits.
 
 ## Verify the public route
 
