@@ -33,12 +33,9 @@ export function validateSiteConfig(input) {
   }
   if (input.visibility === "private" && input.indexing)
     throw new Error("Private builds cannot enable indexing.");
-  if (
-    input.visibility === "public" &&
-    url.origin !== "https://www.hackit.global"
-  ) {
+  if (input.visibility === "public" && url.origin !== "https://hackit.one") {
     throw new Error(
-      "The production canonical origin must be https://www.hackit.global.",
+      "The production canonical origin must be https://hackit.one.",
     );
   }
   return Object.freeze({

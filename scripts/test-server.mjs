@@ -29,7 +29,7 @@ import {
 const project = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const fixture = await mkdtemp(resolve(tmpdir(), "hackit-server-"));
 const site = {
-  origin: "https://www.hackit.global",
+  origin: "https://hackit.one",
   visibility: "public",
   indexing: true,
 };
@@ -235,12 +235,18 @@ try {
       ok(response.body.includes('lang="en"'), "Explicit route wins cookie");
     else equal(response.headers.location, "/en/");
   }
-  const apex = await request(server, "/en/?ref=x", {
-    headers: { Host: "hackit.global" },
-  });
-  equal(apex.status, 308);
-  equal(apex.headers.location, "https://www.hackit.global/en/?ref=x");
-  equal(apex.headers["strict-transport-security"], "max-age=86400");
+  for (const host of ["hackit.global", "www.hackit.global", "www.hackit.one"]) {
+    const alias = await request(server, "/en/?ref=x", {
+      headers: { Host: host },
+    });
+    equal(alias.status, 308);
+    equal(alias.headers.location, "https://hackit.one/en/?ref=x");
+    equal(alias.headers["strict-transport-security"], "max-age=86400");
+  }
+  equal(
+    (await request(server, "/en/", { headers: { Host: "hackit.one" } })).status,
+    200,
+  );
   const localeApi = await request(server, "/api/locale", {
     headers: { "CF-IPCountry": "TW", "X-Geo-Country": "CN" },
   });
@@ -324,7 +330,7 @@ try {
   );
   const upgrade = await raw(
     server,
-    "GET /en/ HTTP/1.1\r\nHost: www.hackit.global\r\nConnection: Upgrade\r\nUpgrade: websocket\r\n\r\n",
+    "GET /en/ HTTP/1.1\r\nHost: hackit.one\r\nConnection: Upgrade\r\nUpgrade: websocket\r\n\r\n",
   );
   ok(upgrade.startsWith("HTTP/1.1 400"));
   ok(upgrade.includes("Strict-Transport-Security: max-age=86400\r\n"));
@@ -526,7 +532,7 @@ try {
   equal(post.headers["strict-transport-security"], "max-age=86400");
   ok(
     (await request(server, "/robots.txt")).body.includes(
-      "Sitemap: https://www.hackit.global/sitemap.xml",
+      "Sitemap: https://hackit.one/sitemap.xml",
     ),
   );
   const sitemap = await request(server, "/sitemap.xml");
@@ -597,7 +603,7 @@ try {
   );
   assertions++;
   assert.throws(() =>
-    validateSiteConfig({ ...site, origin: "https://www.hackit.global/path" }),
+    validateSiteConfig({ ...site, origin: "https://hackit.one/path" }),
   );
   assertions++;
   assert.throws(() => validateSiteConfig({ ...site, visibility: "private" }));
@@ -637,7 +643,7 @@ try {
     const response = await request(actual, "/" + locale + "/");
     equal(response.status, 200);
     ok(response.body.includes('lang="' + locale + '"'));
-    ok(response.body.includes("https://www.hackit.global/" + locale + "/"));
+    ok(response.body.includes("https://hackit.one/" + locale + "/"));
     equal(response.headers["x-robots-tag"], undefined);
     equal(
       response.headers["cache-control"],

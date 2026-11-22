@@ -31,7 +31,7 @@ test("four localized routes hydrate with complete content and canonical metadata
     await expect(page.locator("html")).toHaveClass(/animated/);
     await expect(page.locator("link[rel=canonical]")).toHaveAttribute(
       "href",
-      "https://www.hackit.global/" + locale + "/",
+      "https://hackit.one/" + locale + "/",
     );
     await expect(page.locator(".reading-view .mission-paragraph")).toHaveCount(
       9,
@@ -79,7 +79,7 @@ test("manual locale persists while an explicit URL retains precedence", async ({
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   await expect(page.locator("link[rel=canonical]")).toHaveAttribute(
     "href",
-    "https://www.hackit.global/en/",
+    "https://hackit.one/en/",
   );
   await noPolicyViolations(page);
 });

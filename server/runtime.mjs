@@ -300,7 +300,7 @@ export async function createSiteServer({ publicDir, site: inputSite }) {
         const host = String(req.headers.host || "").toLowerCase();
         if (
           site.visibility === "public" &&
-          /^hackit\.global(?::\d+)?$/.test(host)
+          /^(?:(?:www\.)?hackit\.global|www\.hackit\.one)(?::\d+)?$/.test(host)
         ) {
           return send(req, res, 308, "", {
             Location: site.origin + path + target.search,
