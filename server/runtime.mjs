@@ -12,6 +12,7 @@ const compressGzip = promisify(gzip),
 const PUBLIC_FILES = new Set([
   "app.js",
   "entry.js",
+  "region.js",
   "i18n.js",
   "masonry.js",
   "style.css",

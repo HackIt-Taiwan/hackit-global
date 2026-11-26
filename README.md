@@ -53,7 +53,7 @@ The wall has 42 photo slots and 40 distinct photographs. Two originals containin
 
 ## Runtime and verification
 
-Server locale precedence is a valid `?lang` override, an explicit locale path, the saved manual-choice cookie, weighted `Accept-Language`, then `zh-TW`. The browser also stores a validated manual choice in local storage. Country metadata is unavailable: `/api/locale` returns `{"country":null}`. Country and forwarded IP/host/protocol headers are not trusted.
+Server locale precedence is a valid `?lang` override, an explicit locale path, the saved manual-choice cookie, weighted `Accept-Language`, then `zh-TW`. The browser also stores a validated manual choice in local storage. The first visit opens a localized site chooser. On the production hostname the browser reads the country code from Cloudflare’s same-origin trace to suggest Taiwan. An explicit saved site choice controls repeat visits. Open a locale URL with `?region=choose` to choose again. The application server itself has no country metadata: `/api/locale` returns `{"country":null}`. Country and forwarded IP/host/protocol headers are not trusted.
 
 Each locale page includes full content, canonical/hreflang links, structured data, and social metadata before JavaScript runs. The Node process serves only allowlisted public files and provides `/healthz`, robots/sitemap responses, compression, validators, and security headers. Public responses use an initial one-day HSTS policy, and HTML includes `no-transform` to preserve native email links and document bytes through the CDN. It has no database, forms backend, visitor request logging, required runtime secrets, or external geolocation service.
 
