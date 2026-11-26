@@ -51,21 +51,37 @@
     } catch {}
   }
 
-  function stay() {
-    choose("global");
+  function closeChooser() {
     dialog.close();
     opener?.focus({ preventScroll: true });
   }
 
-  document.getElementById("region-global").addEventListener("click", stay);
+  // A deliberate visit to Global lasts through reloads in this tab. Keep the
+  // remembered destination for the next independent visit.
+  function visitGlobal() {
+    try {
+      sessionStorage.setItem(key, "global");
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  document.getElementById("region-global").addEventListener("click", () => {
+    choose("global");
+    closeChooser();
+  });
   taiwan.addEventListener("click", (event) => {
     if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey)
       return;
     choose("tw");
+    // A history restoration can reuse this document without rerunning the script.
+    closeChooser();
   });
   dialog.addEventListener("cancel", (event) => {
     event.preventDefault();
-    stay();
+    visitGlobal();
+    closeChooser();
   });
   document.addEventListener("click", (event) => {
     const trigger = event.target.closest("[data-open-region]");
@@ -76,21 +92,23 @@
   });
   remember.checked = saved === "global" || saved === "tw";
   const url = new URL(location.href);
-  const chooseAgain = url.searchParams.get("region") === "choose";
+  const action = url.searchParams.get("region");
+  if (action === "global") {
+    if (visitGlobal()) {
+      url.searchParams.delete("region");
+      history.replaceState(history.state, "", url);
+    }
+    return;
+  }
+  if (action === "choose") {
+    openChooser();
+    return;
+  }
   const returning =
     performance.getEntriesByType("navigation")[0]?.type === "back_forward";
-  const fromTaiwan = document.referrer && new URL(document.referrer).hostname;
-  if (
-    saved === "tw" &&
-    !chooseAgain &&
-    !staying &&
-    !returning &&
-    !url.hash &&
-    fromTaiwan !== "www.hackit.tw" &&
-    fromTaiwan !== "hackit.tw"
-  ) {
-    location.replace(taiwan.href);
-  } else if (chooseAgain || (!staying && saved !== "global")) {
-    openChooser();
-  }
+  const linkedFromOutside =
+    document.referrer && new URL(document.referrer).origin !== url.origin;
+  if (staying || returning || url.hash || linkedFromOutside) return;
+  if (saved === "tw") location.replace(taiwan.href);
+  else if (saved !== "global") openChooser();
 })();
