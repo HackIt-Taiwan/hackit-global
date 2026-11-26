@@ -18,6 +18,7 @@
   let detectionStarted = false;
   function openChooser() {
     if (dialog.open) return;
+    dialog.inert = false;
     dialog.showModal();
     if (detectionStarted) return;
     detectionStarted = true;
@@ -53,6 +54,7 @@
 
   function closeChooser() {
     dialog.close();
+    dialog.inert = true;
     opener?.focus({ preventScroll: true });
   }
 

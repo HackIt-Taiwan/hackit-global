@@ -13,8 +13,11 @@ test.beforeEach(async ({ page }) => {
 
 async function ready(page, path = "/en/") {
   await page.goto(path);
-  if (await page.locator("#region-dialog").isVisible())
+  const chooser = page.locator("#region-dialog");
+  if (await chooser.isVisible()) {
     await page.locator("#region-global").click();
+    await expect(chooser).toBeHidden();
+  }
   await expect(page.locator("html")).not.toHaveClass(/booting/);
   await expect(page.locator("html")).not.toHaveClass(/entry-failed/);
 }
