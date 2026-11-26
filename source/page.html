@@ -32,6 +32,51 @@
         height="809"
         fetchpriority="high"
     /></div>
+    <dialog id="region-dialog" aria-labelledby="region-title">
+      <img
+        class="region-brand"
+        src="assets/hackit-transparent.webp"
+        width="1746"
+        height="809"
+        alt="HackIt"
+      />
+      <h2
+        id="region-title"
+        data-region-copy="regionTitle"
+        tabindex="-1"
+        autofocus
+        >選擇你的地區</h2
+      >
+      <p class="region-intro" data-region-copy="regionIntro"
+        >前往台灣站探索當地活動，或留在全球站認識 HackIt。</p
+      >
+      <div class="region-options">
+        <a id="region-taiwan" href="https://www.hackit.tw/zh-TW"
+          ><span class="region-site"
+            ><strong data-region-copy="regionTaiwan">台灣</strong
+            ><small>www.hackit.tw</small></span
+          ><span
+            id="region-recommended"
+            data-region-copy="regionRecommended"
+            hidden
+            >依所在地推薦</span
+          ><span class="region-arrow" aria-hidden="true">→</span></a
+        >
+        <button type="button" id="region-global"
+          ><span class="region-site"
+            ><strong data-region-copy="regionGlobal">全球站</strong
+            ><small>hackit.one</small></span
+          ><span class="region-arrow" aria-hidden="true">→</span></button
+        >
+      </div>
+      <label class="region-memory"
+        ><input type="checkbox" id="region-remember" /><span
+          data-region-copy="regionRemember"
+          >記住我的選擇</span
+        ></label
+      >
+    </dialog>
+    <script src="region.js"></script>
     <a class="skip-link" href="#overview" id="skip-story"
       >略過捲動動畫，閱讀內容</a
     >
@@ -158,7 +203,11 @@
               <span class="corner-arrow" aria-hidden="true"></span></button
             ><a class="contact-link" href="mailto:hello@hackit.one"
               >hello@hackit.one</a
-            ><a class="contact-link registry-link" href="https://certificate.hackit.one/">HackIt 證書驗證</a></section
+            ><a
+              class="contact-link registry-link"
+              href="https://certificate.hackit.one/"
+              >HackIt 證書驗證</a
+            ></section
           >
         </div></div
       >
@@ -222,7 +271,11 @@
         ><button class="join-open" type="button">加入我們</button
         ><a class="contact-link" href="mailto:hello@hackit.one"
           >hello@hackit.one</a
-        ><a class="contact-link registry-link" href="https://certificate.hackit.one/">HackIt 證書驗證</a></section
+        ><a
+          class="contact-link registry-link"
+          href="https://certificate.hackit.one/"
+          >HackIt 證書驗證</a
+        ></section
       >
       <noscript
         ><p class="no-js-links"

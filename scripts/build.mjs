@@ -14,6 +14,7 @@ const locales = ["zh-TW", "zh-HK", "zh-CN", "en"];
 const files = [
   "entry.css",
   "entry.js",
+  "region.js",
   "style.css",
   "app.js",
   "i18n.js",

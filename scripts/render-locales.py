@@ -61,6 +61,9 @@ for locale in payload['locales']:
                     el.append(child)
                 else:
                     append_text(el, v)
+    for element in nodes('//*[@data-region-copy]'):
+        put(element, d[element.get('data-region-copy')])
+    attr('//*[@id="region-taiwan"]', 'href', 'https://www.hackit.tw/' + ('en' if locale == 'en' else 'zh-TW'))
     text('//title', d['title'])
     attr('//meta[@name="description"]', 'content', d['description'])
     attr('//meta[@name="robots"]', 'content', 'index,follow,max-image-preview:large' if payload['indexing'] else 'noindex,nofollow')

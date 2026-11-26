@@ -79,6 +79,13 @@
   }
   const D = {
     "zh-TW": {
+      regionTitle: "選擇你的地區",
+      regionIntro: "前往台灣站探索當地活動，或留在全球站認識 HackIt。",
+      regionTaiwan: "台灣",
+      regionGlobal: "全球站",
+      regionRecommended: "依所在地推薦",
+      regionRemember: "記住我的選擇",
+      regionSwitcher: "地區",
       title: "HackIt",
       description:
         "HackIt 是由青少年為青少年打造的創作社群。我們從台灣出發，透過黑客松和共同創作，讓年輕人把想法變成現實。",
@@ -139,6 +146,13 @@
       ],
     },
     "zh-HK": {
+      regionTitle: "選擇你的地區",
+      regionIntro: "到台灣網站探索當地活動，或留在全球網站認識 HackIt。",
+      regionTaiwan: "台灣",
+      regionGlobal: "全球網站",
+      regionRecommended: "按所在地推薦",
+      regionRemember: "記住我的選擇",
+      regionSwitcher: "地區",
       title: "HackIt",
       description:
         "HackIt 是由青少年為青少年打造的創作社群。我們由台灣出發，透過黑客松和共同創作，讓年輕人把想法付諸實踐。",
@@ -199,6 +213,13 @@
       ],
     },
     "zh-CN": {
+      regionTitle: "选择你的地区",
+      regionIntro: "前往台湾站了解当地活动，或留在全球站认识 HackIt。",
+      regionTaiwan: "台湾",
+      regionGlobal: "全球站",
+      regionRecommended: "根据所在地推荐",
+      regionRemember: "记住我的选择",
+      regionSwitcher: "地区",
       title: "HackIt",
       description:
         "HackIt 是由青少年为青少年打造的创作社区。我们从台湾出发，通过黑客松和共同创作，让年轻人把想法变成现实。",
@@ -259,6 +280,14 @@
       ],
     },
     en: {
+      regionTitle: "Choose your region",
+      regionIntro:
+        "Explore local events in Taiwan or get to know HackIt worldwide.",
+      regionTaiwan: "Taiwan",
+      regionGlobal: "Global site",
+      regionRecommended: "Suggested for you",
+      regionRemember: "Remember my choice",
+      regionSwitcher: "Region",
       title: "HackIt",
       description:
         "HackIt is a youth-led creative community that started in Taiwan. Through hackathons and building together, young people turn ideas into reality.",
@@ -985,6 +1014,14 @@
     doc.documentElement.lang = selected;
     doc.documentElement.dataset.locale = selected;
     doc.title = d.title;
+    each("[data-region-copy]", (element) => {
+      element.textContent = d[element.dataset.regionCopy];
+    });
+    attr(
+      "#region-taiwan",
+      "href",
+      "https://www.hackit.tw/" + (selected === "en" ? "en" : "zh-TW"),
+    );
     attr('meta[name="description"]', "content", d.description);
     const canonical = new URL("/" + selected + "/", canonicalOrigin).href;
     attr("link[rel=canonical]", "href", canonical);
@@ -1122,7 +1159,7 @@
     );
     host.dispatchEvent(new Event("resize"));
   }
-  const control = doc.createElement("label");
+  const control = doc.createElement("div");
   control.className = "locale-control";
   const label = doc.createElement("span");
   label.className = "locale-label";
@@ -1139,6 +1176,14 @@
     o.textContent = name;
     select.append(o);
   }
+  const regionSwitch = doc.createElement("button");
+  regionSwitch.type = "button";
+  regionSwitch.dataset.openRegion = "";
+  regionSwitch.dataset.regionCopy = "regionSwitcher";
+  regionSwitch.setAttribute("aria-haspopup", "dialog");
+  regionSwitch.setAttribute("aria-controls", "region-dialog");
+  if (typeof doc.getElementById("region-dialog")?.showModal === "function")
+    control.append(regionSwitch);
   control.append(label, select);
   doc.body.append(control);
   function placeLanguageControl() {

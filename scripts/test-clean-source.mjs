@@ -5,7 +5,13 @@ const root = new URL("..", import.meta.url);
 const map = await readFile(new URL("source/world-map.svg", root), "utf8");
 assert.equal((map.match(/class="map-activation"/g) || []).length, 1);
 assert.equal((map.match(/class="taiwan-shape"/g) || []).length, 1);
-for (const file of ["app.js", "i18n.js", "masonry.js", "entry.js"]) {
+for (const file of [
+  "app.js",
+  "i18n.js",
+  "masonry.js",
+  "entry.js",
+  "region.js",
+]) {
   const source = await readFile(new URL("source/static/" + file, root), "utf8");
   assert.doesNotMatch(
     source,
