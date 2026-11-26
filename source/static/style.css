@@ -2037,8 +2037,47 @@ dialog[data-dialog-motion="closing"]::backdrop {
   box-shadow: 0 20px 70px #25274826;
 }
 #region-dialog::backdrop {
-  background: #e8e6e0ee;
-  backdrop-filter: blur(10px);
+  background: #e8e6e0b8;
+  backdrop-filter: blur(5px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  #region-dialog,
+  #region-dialog::backdrop {
+    opacity: 0;
+    transition:
+      opacity 180ms ease,
+      transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      overlay 220ms allow-discrete,
+      display 220ms allow-discrete;
+  }
+  #region-dialog {
+    transform: translateY(8px) scale(0.985);
+  }
+  #region-dialog[open],
+  #region-dialog[open]::backdrop {
+    opacity: 1;
+    transform: none;
+  }
+  @starting-style {
+    #region-dialog[open],
+    #region-dialog[open]::backdrop {
+      opacity: 0;
+    }
+    #region-dialog[open] {
+      transform: translateY(8px) scale(0.985);
+    }
+  }
+  .region-arrow {
+    transition: transform 160ms ease-out;
+  }
+  .region-options > :focus-visible .region-arrow {
+    transform: translateX(3px);
+  }
+  @media (hover: hover) {
+    .region-options > :hover .region-arrow {
+      transform: translateX(3px);
+    }
+  }
 }
 html:has(#region-dialog[open]) {
   overflow: hidden;
