@@ -114,6 +114,7 @@
       dialogTitle: "找到你的社群。",
       dialogCopy: "前往地區官網，認識當地活動與加入方式。",
       contact: "聯絡我們",
+      registry: "HackIt 證書驗證",
       collaborate: "合作或其他想法",
       participant: "參與者回饋",
       daydreamParticipant: "Daydream Taiwan 參與者",
@@ -173,6 +174,7 @@
       dialogTitle: "找到你的社群。",
       dialogCopy: "瀏覽地區網站，了解當地活動及參加方法。",
       contact: "聯絡我們",
+      registry: "HackIt 證書驗證",
       collaborate: "合作或其他想法",
       participant: "參加者分享",
       daydreamParticipant: "Daydream Taiwan 參加者",
@@ -232,6 +234,7 @@
       dialogTitle: "找到你的社区。",
       dialogCopy: "访问地区官网，了解当地活动和参与方式。",
       contact: "联系我们",
+      registry: "HackIt 证书验证",
       collaborate: "合作或其他想法",
       participant: "参与者反馈",
       daydreamParticipant: "Daydream Taiwan 参与者",
@@ -297,6 +300,7 @@
       dialogCopy:
         "Visit a regional website to explore local events and ways to join.",
       contact: "Contact us",
+      registry: "Verify a HackIt certificate",
       collaborate: "Collaborations or other ideas",
       participant: "Participant feedback",
       daydreamParticipant: "Daydream Taiwan participant",
@@ -1054,6 +1058,7 @@
     text(".dialog-contact>span", d.collaborate);
     text('.no-js-links a[href="https://hackit.tw"]', d.goTaiwan);
     text('.no-js-links a[href^="mailto:"]', d.contact);
+    text(".registry-link", d.registry);
     each(".wall-quote", (e) => {
       const i = Number(e.dataset.quoteIndex);
       if (!Number.isInteger(i)) return;

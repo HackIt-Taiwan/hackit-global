@@ -133,6 +133,7 @@ for locale in payload['locales']:
     text('//*[@id="join-dialog"]/p[not(' + cls('small-label') + ')]', d['dialogCopy'])
     text(C('region-link') + '//small', '' if locale == 'en' else d['taiwan'])
     text(C('dialog-contact') + '/span', d['collaborate'])
+    text(C('registry-link'), d['registry'])
     text(C('no-js-links') + '/a[@href="https://hackit.tw"]', d['goTaiwan'])
     text(C('no-js-links') + '/a[starts-with(@href,"mailto:")]', d['contact'])
     for el in nodes('//*[@data-quote-index]'):
